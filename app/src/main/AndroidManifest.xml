@@ -17,7 +17,7 @@
 
         <activity
             android:name=".Mainmenu"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:exported="true">
 
             <intent-filter>
@@ -28,7 +28,7 @@
         </activity>
         <activity
             android:name = ".Splashpage"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -37,7 +37,7 @@
         </activity>
         <activity
             android:name = ".GamePage"
-            android:screenOrientation="landscape"
+            android:screenOrientation="portrait"
             android:exported="true">
 
             <intent-filter>
@@ -47,7 +47,7 @@
         </activity>
 <!--        <activity-->
 <!--            android:name = ".Nextpage"-->
-<!--            android:screenOrientation="landscape"-->
+<!--            android:screenOrientation="portrait"-->
 <!--            android:exported="true">-->
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN"/>-->
