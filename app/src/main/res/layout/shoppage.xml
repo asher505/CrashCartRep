@@ -2,17 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/blankbg"
+    android:background="@drawable/cc_shop"
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btn_back2"
+        android:id="@+id/btn_back"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="572dp"
-        android:layout_marginRight="122dp"
+        android:layout_marginTop="560dp"
+        android:layout_marginRight="260dp"
         android:background="@drawable/button"
         android:text="Back"
         android:textColor="#C9BDFC"

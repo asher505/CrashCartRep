@@ -18,7 +18,7 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
     protected void onCreate(Bundle SaveInstanceState){
         super.onCreate(SaveInstanceState);
 
-        setContentView(R.layout.mainmenu);
+        setContentView(R.layout.shoppage);
 
         //NEVER import R *
         //when android studio tells you to import R, DO NOT do it
@@ -33,7 +33,7 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
         // when the specific button is clicked / touch
         // it knows what to do
 
-        StateManager.Instance.AddState(new Mainmenu());
+        StateManager.Instance.AddState(new ShopPage());
     }
 
     @Override
@@ -56,8 +56,8 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
 //            //Goes to the MainGameSceneState hence thats why need to set class to Game
 //        }
          if (v == btn_back){
-//            intent.setClass(this, Nextpage.class);
-//            StateManager.Instance.ChangeState("Mainmenu");
+             intent.setClass(this,Mainmenu.class);
+             StateManager.Instance.ChangeState("Mainmenu");
         }
 
 //        // exit button
@@ -79,7 +79,7 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
 
     @Override
     public String GetName(){ // State name for the Main menu
-        return "Mainmenu";
+        return "ShopPage";
     }
 
     @Override

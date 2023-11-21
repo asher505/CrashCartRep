@@ -30,7 +30,7 @@ public class RenderBackground implements EntityBase {
 
     @Override
     public void Init(SurfaceView _view){
-        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.gamescene);
+        bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.cc_railbase);
 
         DisplayMetrics metrics = _view.getResources().getDisplayMetrics();
         ScreenWidth = metrics.widthPixels;
@@ -44,16 +44,16 @@ public class RenderBackground implements EntityBase {
         // horizontal scrolling
         // Speed of scrolling
 
-        xPos -= _dt * 500;
-        if (xPos < -ScreenWidth){
-            xPos = 0;
+        yPos += _dt * 750;
+        if (yPos > ScreenHeight   ){
+            yPos = 0;
         }
     }
 
     @Override
     public void Render(Canvas _canvas){
         _canvas.drawBitmap(scaledbmp, xPos, yPos, null);
-        _canvas.drawBitmap(scaledbmp,xPos + ScreenWidth, yPos, null);
+        _canvas.drawBitmap(scaledbmp,xPos, yPos - ScreenHeight, null);
     }
 
     @Override

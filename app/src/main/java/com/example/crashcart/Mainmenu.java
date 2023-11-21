@@ -51,8 +51,8 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
 
         StateManager.Instance.AddState(new Mainmenu());
 
-        //not sure if i need this to swicth to shop
-        StateManager.Instance.AddState(new ShopPage());
+//        //not sure if i need this to swicth to shop
+//        StateManager.Instance.AddState(new ShopPage());
     }
 
     @Override
