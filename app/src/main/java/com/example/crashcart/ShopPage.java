@@ -10,16 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-public class Mainmenu extends Activity implements OnClickListener, StateBase {
-    //WE have 2 buttons. Start button and Back button
-    // Start button, qhen press will go to another page.. maybe gamepage(next week)
-    //back button, when press wil go back to splashpage (for now)
-
-    //define buttons. buttons are objects.
-
-    private ImageButton btn_start; //int a
-
-    private ImageButton btn_shop; //int a
+public class ShopPage extends Activity implements OnClickListener, StateBase {
 
     private Button btn_back;
 
@@ -28,18 +19,11 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
         super.onCreate(SaveInstanceState);
 
         setContentView(R.layout.mainmenu);
-        //not sure if i need this to swicth to shop
-        //setContentView(R.layout.shoppage);
 
         //NEVER import R *
         //when android studio tells you to import R, DO NOT do it
         //whenm u see this message, it will mean xml has an error.
 
-        btn_start = (ImageButton) findViewById(R.id.btn_ride);
-        btn_start.setOnClickListener(this);
-
-        btn_shop = (ImageButton) findViewById(R.id.btn_shop);
-        btn_shop.setOnClickListener(this);
 
         btn_back = (Button) findViewById(R.id.btn_back);
         btn_back.setOnClickListener(this);
@@ -50,9 +34,6 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
         // it knows what to do
 
         StateManager.Instance.AddState(new Mainmenu());
-
-        //not sure if i need this to swicth to shop
-        StateManager.Instance.AddState(new ShopPage());
     }
 
     @Override
@@ -67,23 +48,16 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
 
         Intent intent = new Intent();
 
-        if (v == btn_start){
-            //intent -> to set to another class which is another page or screen to be launch.
-            //Equal to change screen
-            intent.setClass(this,GamePage.class);
-            StateManager.Instance.ChangeState("MainGame"); // Press Start button
-            //Goes to the MainGameSceneState hence thats why need to set class to Game
-        }
-        if (v == btn_shop){
-
-            //change GamePage.class to ShopPage
-            intent.setClass(this,ShopPage.class);
-            StateManager.Instance.ChangeState("ShopPage"); // Press shop button
-
-        }
-        else if (v == btn_back){
+//        if (v == btn_start){
+//            //intent -> to set to another class which is another page or screen to be launch.
+//            //Equal to change screen
+//            intent.setClass(this,GamePage.class);
+//            StateManager.Instance.ChangeState("MainGame"); // Press Start button
+//            //Goes to the MainGameSceneState hence thats why need to set class to Game
+//        }
+         if (v == btn_back){
 //            intent.setClass(this, Nextpage.class);
-//            StateManager.Instance.ChangeState("NextPage");
+//            StateManager.Instance.ChangeState("Mainmenu");
         }
 
 //        // exit button

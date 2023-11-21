@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blankbg"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/btn_back2"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="572dp"
+        android:layout_marginRight="122dp"
+        android:background="@drawable/button"
+        android:text="Back"
+        android:textColor="#C9BDFC"
+        android:textSize="18dp" />
+</RelativeLayout>
