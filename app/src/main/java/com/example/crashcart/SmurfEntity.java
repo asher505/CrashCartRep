@@ -2,6 +2,9 @@ package com.example.crashcart;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.os.Vibrator;
+import android.os.Build;
+import android.os.VibrationEffect;
 import android.view.SurfaceView;
 import java.util.Random;
 
@@ -18,6 +21,8 @@ public class SmurfEntity implements EntityBase, Collidable{
     
 	 // For use with the TouchManager.class
     private boolean hasTouched = false;
+
+    private Vibrator _vibrator;
 
     int ScreenWidth, ScreenHeight;
 
@@ -54,6 +59,9 @@ public class SmurfEntity implements EntityBase, Collidable{
 
     @Override
     public void Update(float _dt) {
+
+        if (GameSystem.Instance.GetIsPaused())
+            return;
 
         // 4. Update spritesheet
         spritesheet.Update(_dt);
@@ -142,5 +150,4 @@ public class SmurfEntity implements EntityBase, Collidable{
             //Play an audio
         }
     }
-
 }

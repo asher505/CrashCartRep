@@ -18,6 +18,12 @@ public class RenderBackground implements EntityBase {
     int ScreenWidth, ScreenHeight;
 
     private Bitmap scaledbmp = null;
+
+    @Override
+    public String GetType() {
+        return "RenderBackgroundEntity";
+    }
+
     @Override
     public boolean IsDone(){
         return isDone;
@@ -43,6 +49,9 @@ public class RenderBackground implements EntityBase {
     public void Update(float _dt){
         // horizontal scrolling
         // Speed of scrolling
+
+        if (GameSystem.Instance.GetIsPaused())
+            return;
 
         yPos += _dt * 750;
         if (yPos > ScreenHeight   ){

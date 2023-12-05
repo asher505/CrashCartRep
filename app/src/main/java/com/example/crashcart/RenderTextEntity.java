@@ -28,6 +28,11 @@ public class RenderTextEntity implements EntityBase {
     protected Typeface myfont;
 
     @Override
+    public String GetType() {
+        return "RenderTextEntity";
+    }
+
+    @Override
     public boolean IsDone() {
         return isDone;
     }
