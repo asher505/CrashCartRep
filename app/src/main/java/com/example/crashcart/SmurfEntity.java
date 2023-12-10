@@ -63,9 +63,7 @@ public class SmurfEntity implements EntityBase, Collidable{
         if (GameSystem.Instance.GetIsPaused())
             return;
 
-        // 4. Update spritesheet
         spritesheet.Update(_dt);
-
         // 5. Deal with the touch on screen for interaction of the image using collision check
         if (TouchManager.Instance.HasTouch())
         {
@@ -103,7 +101,7 @@ public class SmurfEntity implements EntityBase, Collidable{
 
     @Override
     public int GetRenderLayer(){
-        return LayerConstants.SMURF_LAYER;
+        return LayerConstants.PLAYER_LAYER;
     }
 
     @Override
@@ -144,10 +142,9 @@ public class SmurfEntity implements EntityBase, Collidable{
 
     @Override
     public void OnHit(Collidable _other) {
-        //if (_other.GetType() == "StarEntity") //Another Entity
+        if (_other.GetType() == "BoulderEntity") //Another Entity
         {
-            //SetIsDone(true);
-            //Play an audio
+            VibrateManager.Instance.startVibrate();
         }
     }
 }

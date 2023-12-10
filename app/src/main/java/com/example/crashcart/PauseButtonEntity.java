@@ -25,7 +25,6 @@ public class PauseButtonEntity implements EntityBase{
 
     private float buttonDelay = 0;
 
-
     @Override
     public boolean IsDone() {
         return isDone;
@@ -38,6 +37,7 @@ public class PauseButtonEntity implements EntityBase{
 
     @Override
     public void Init(SurfaceView _view) {
+        //startVibrate();
         // indicate the images to be used.
         // Load the images.
         bmpP = ResourceManager.Instance.GetBitmap(R.drawable.pause);
@@ -56,7 +56,10 @@ public class PauseButtonEntity implements EntityBase{
         yPos = 150;
 
         isInit = true;
+
     }
+
+
 
     @Override
     public void Update(float _dt) {
@@ -71,7 +74,7 @@ public class PauseButtonEntity implements EntityBase{
 
                 if (Collision.SphereToSphere((TouchManager.Instance.GetPosX()), TouchManager.Instance.GetPosY(),  0.0f, xPos, yPos, imgRadius) && buttonDelay >= 0.25){
                     Paused = true;
-
+                    VibrateManager.Instance.startVibrate();
                     if (PauseConfirmDialogFragment.IsShown){
                         return;
                     }

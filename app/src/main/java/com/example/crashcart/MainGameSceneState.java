@@ -18,15 +18,19 @@ public class MainGameSceneState implements StateBase {
     @Override
     public void OnEnter(SurfaceView _view)
     {
+        AudioManager.Instance.PlayAudio(R.raw.bgm, 0.9f);
         // 3. Create Background 
         RenderBackground.Create();
         // Example to include another Renderview for Pause Button
         SmurfEntity.Create();
+        BoulderEntity.Create();
         PauseButtonEntity.Create();
         RenderTextEntity.Create();
     }
     @Override
     public void OnExit() {
+        AudioManager.Instance.StopAudio(R.raw.bgm);
+        AudioManager.Instance.Release();
 			// 4. Clear any instance instantiated via EntityManager.
         EntityManager.Instance.Clean();
         // 5. Clear or end any instance instantiated via GamePage.
