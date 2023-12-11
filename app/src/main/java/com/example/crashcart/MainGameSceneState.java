@@ -34,13 +34,15 @@ public class MainGameSceneState implements StateBase {
     }
     @Override
     public void OnExit() {
-        AudioManager.Instance.StopAudio(R.raw.bgm);
-        AudioManager.Instance.Release();
+        if (AudioManager.Instance != null) {
+            AudioManager.Instance.StopAudio(R.raw.bgm);
+            AudioManager.Instance.Release();
+        }
 			// 4. Clear any instance instantiated via EntityManager.
         EntityManager.Instance.Clean();
         // 5. Clear or end any instance instantiated via GamePage.
         GamePage.Instance.finish();
-       
+
     }
 
     @Override
@@ -54,9 +56,9 @@ public class MainGameSceneState implements StateBase {
     public void Update(float _dt) {
 
 
-        ObstacleGenerator(_dt);
-        ObstacleGenerator(_dt);
-        ObstacleGenerator(_dt);
+       // ObstacleGenerator(_dt);
+        //ObstacleGenerator(_dt);
+        //ObstacleGenerator(_dt);
 
         EntityManager.Instance.Update(_dt);
 

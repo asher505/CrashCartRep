@@ -42,8 +42,11 @@ public class CartEntity implements EntityBase, Collidable{
         // In java util library, random generator
         Random ranGen = new Random();
 
-        xPos = ranGen.nextFloat() * _view.getWidth();
-        yPos = ranGen.nextFloat() * _view.getHeight();
+//        xPos = ranGen.nextFloat() * _view.getWidth();
+//        yPos = ranGen.nextFloat() * _view.getHeight();
+
+       //xPos = 2;  // Set it to the middle grid
+        //yPos = _view.getHeight(); ;  // Set it to the bottom grid
 
         xDir = ranGen.nextFloat() * 100.0f - 50.0f;
         yDir = ranGen.nextFloat() * 100.0f - 50.0f;
@@ -53,32 +56,79 @@ public class CartEntity implements EntityBase, Collidable{
 
     @Override
     public void Update(float _dt) {
-
         if (GameSystem.Instance.GetIsPaused())
             return;
 
         spritesheet.Update(_dt);
+
+        // Define the number of rows and columns
+        int numRows = 3;
+        int numCols = 3;
+
+        //spacing between cart positions in the grid
+        float XgridStep = 280.0f;
+        float YgridStep = 280.0f;
         // 5. Deal with the touch on screen for interaction of the image using collision check
-        if (TouchManager.Instance.HasTouch())
-        {
-            // 6. Check collision here!!!
+        if (TouchManager.Instance.HasTouch()) {
             float imgRadius = spritesheet.GetWidth() * 0.5f;
 
+            // 6. Check collision here!!!
+
             if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) || hasTouched) {
-                // Collided!
-                hasTouched = true; // We want to move the character anywhere in the scene.
+                hasTouched = true; // We want to move the character  the scene.
 
                 // 7. Drag the sprite around the screen
+                //pos based on touch
                 xPos = TouchManager.Instance.GetPosX();
                 yPos = TouchManager.Instance.GetPosY();
-                xDir += xDir * _dt;
-                yDir += yDir * _dt;
+//                xDir += xDir * _dt;
+//                yDir += yDir * _dt;
+
+                // Snap cart within the grid
+                //pos based on grid
+                xPos = Math.round(xPos / XgridStep) * XgridStep;
+                yPos = Math.round(yPos / YgridStep) * YgridStep;
+
+                // Ensure the cart stays within grid bounds
+                // limit the horizontal grid
+                xPos = Math.max(255, Math.min(numCols * XgridStep, xPos));
+
+                // limit the vertical grid
+                yPos = Math.max(2200 - numRows * YgridStep, Math.min(2000, yPos));
+
+
+                //(2200 - numRows * YgridStep) bottommost position cart can be at
             }
         }
     }
 
 
 
+//    @Override
+//    public void Update(float _dt) {
+//
+//        if (GameSystem.Instance.GetIsPaused())
+//            return;
+//
+//        spritesheet.Update(_dt);
+//        // 5. Deal with the touch on screen for interaction of the image using collision check
+//        if (TouchManager.Instance.HasTouch())
+//        {
+//            // 6. Check collision here!!!
+//            float imgRadius = spritesheet.GetWidth() * 0.5f;
+//
+//            if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius) || hasTouched) {
+//                // Collided!
+//                hasTouched = true; // We want to move the character anywhere in the scene.
+//
+//                // 7. Drag the sprite around the screen
+//                xPos = TouchManager.Instance.GetPosX();
+//                yPos = TouchManager.Instance.GetPosY();
+//                xDir += xDir * _dt;
+//                yDir += yDir * _dt;
+//            }
+//        }
+//    }
 
 
     @Override
