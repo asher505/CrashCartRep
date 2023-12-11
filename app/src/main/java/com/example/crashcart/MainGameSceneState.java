@@ -56,9 +56,9 @@ public class MainGameSceneState implements StateBase {
     public void Update(float _dt) {
 
 
-       // ObstacleGenerator(_dt);
-        //ObstacleGenerator(_dt);
-        //ObstacleGenerator(_dt);
+        ObstacleGenerator(_dt);
+        ObstacleGenerator(_dt);
+        ObstacleGenerator(_dt);
 
         EntityManager.Instance.Update(_dt);
 

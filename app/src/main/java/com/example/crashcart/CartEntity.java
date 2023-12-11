@@ -42,8 +42,20 @@ public class CartEntity implements EntityBase, Collidable{
         // In java util library, random generator
         Random ranGen = new Random();
 
-//        xPos = ranGen.nextFloat() * _view.getWidth();
-//        yPos = ranGen.nextFloat() * _view.getHeight();
+        // Define the grid position
+        int initialGridX = 2; // Adjust as needed
+        int initialGridY = 2; // Adjust as needed
+
+
+        float gridStep = 280.0f;
+
+        // Set the initial position based on the grid
+        xPos = initialGridX * gridStep;
+        yPos = 1100 + initialGridY * gridStep;
+
+        // Define the number of rows and columns
+
+        //spacing between cart positions in the grid
 
        //xPos = 2;  // Set it to the middle grid
         //yPos = _view.getHeight(); ;  // Set it to the bottom grid
@@ -97,7 +109,9 @@ public class CartEntity implements EntityBase, Collidable{
                 yPos = Math.max(2200 - numRows * YgridStep, Math.min(2000, yPos));
 
 
-                //(2200 - numRows * YgridStep) bottommost position cart can be at
+
+                //if xPos > 255, set it to numCols * XgridStep
+                //bottommost position cart can be at is (2200 - numRows * YgridStep)
             }
         }
     }
