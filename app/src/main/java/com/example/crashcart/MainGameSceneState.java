@@ -5,11 +5,14 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.SurfaceView;
 
+import kotlin.random.Random;
+
 // Created by TanSiewLan2021
 
 public class MainGameSceneState implements StateBase {
     private float timer = 0.0f;
-
+    float obstacleTimer = 0f;
+    int obstacleRandom;
     @Override
     public String GetName() {
         return "MainGame";
@@ -23,7 +26,8 @@ public class MainGameSceneState implements StateBase {
         RenderBackground.Create();
         // Example to include another Renderview for Pause Button
         CartEntity.Create();
-        BoulderEntity.Create();
+        //BoulderEntity.Create();
+        ArrowEntity.Create();
         PauseButtonEntity.Create();
         RenderTextEntity.Create();
     }
@@ -47,6 +51,16 @@ public class MainGameSceneState implements StateBase {
 
     @Override
     public void Update(float _dt) {
+        obstacleTimer += _dt;
+
+        // generate obstacles
+        if (obstacleTimer > 3f){
+            obstacleTimer = 0f;
+            obstacleRandom = Random.Default.nextInt(100);
+            if (obstacleRandom < 100){
+                //BoulderEntity.Create();
+            }
+        }
 
         EntityManager.Instance.Update(_dt);
 

@@ -12,11 +12,11 @@ import kotlin.math.UMathKt;
 import kotlin.random.Random;
 import kotlin.random.URandomKt;
 
-public class BoulderEntity implements EntityBase, Collidable{
+public class ArrowEntity implements EntityBase, Collidable{
 
-    public final static BoulderEntity Instance = new BoulderEntity();
+    public final static ArrowEntity Instance = new ArrowEntity();
 
-    private BoulderEntity(){
+    private ArrowEntity(){
 
     }
 
@@ -50,7 +50,7 @@ public class BoulderEntity implements EntityBase, Collidable{
     public void Init(SurfaceView _view) {
         // New method using our own resource manager : Returns pre-loaded one if exists
         // 2. Loading spritesheet
-        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.boulder), 1, 1, 1);
+        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.arrow_sprite), 1, 3, 3);
 
         // 3. Get some random position of x and y
         // This part is really random, You can have different ways to move or interact with your character.
@@ -117,19 +117,19 @@ public class BoulderEntity implements EntityBase, Collidable{
         return;
     }
 
-    public static BoulderEntity Create()
+    public static ArrowEntity Create()
     {
-        BoulderEntity result = new BoulderEntity();
-        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_BOULDER);
+        ArrowEntity result = new ArrowEntity();
+        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_ARROW);
         return result;
     }
 
     @Override
-    public ENTITY_TYPE GetEntityType(){return ENTITY_TYPE.ENT_BOULDER;}
+    public ENTITY_TYPE GetEntityType(){return ENTITY_TYPE.ENT_ARROW;}
 
     @Override
     public String GetType() {
-        return "BoulderEntity";
+        return "ArrowEntity";
     }
 
     @Override
