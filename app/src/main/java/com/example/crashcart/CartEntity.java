@@ -1,14 +1,10 @@
 package com.example.crashcart;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.os.Vibrator;
-import android.os.Build;
-import android.os.VibrationEffect;
 import android.view.SurfaceView;
 import java.util.Random;
 
-public class SmurfEntity implements EntityBase, Collidable{
+public class CartEntity implements EntityBase, Collidable{
     
 	 // 1. Declare the use of spritesheet using Sprite class.
      private Sprite spritesheet = null;
@@ -21,8 +17,6 @@ public class SmurfEntity implements EntityBase, Collidable{
     
 	 // For use with the TouchManager.class
     private boolean hasTouched = false;
-
-    private Vibrator _vibrator;
 
     int ScreenWidth, ScreenHeight;
 
@@ -40,7 +34,7 @@ public class SmurfEntity implements EntityBase, Collidable{
     public void Init(SurfaceView _view) {
         // New method using our own resource manager : Returns pre-loaded one if exists
         // 2. Loading spritesheet
-        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.smurf_sprite), 4, 4, 16);
+        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.minecart_sprite), 1, 4, 4);
 
         // 3. Get some random position of x and y
       // This part is really random, You can have different ways to move or interact with your character.
@@ -110,15 +104,15 @@ public class SmurfEntity implements EntityBase, Collidable{
         return;
     }
 
-    public static SmurfEntity Create()
+    public static CartEntity Create()
     {
-        SmurfEntity result = new SmurfEntity();
-        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_SMURF);
+        CartEntity result = new CartEntity();
+        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_CART);
         return result;
     }
 
     @Override
-    public ENTITY_TYPE GetEntityType(){return ENTITY_TYPE.ENT_SMURF;}
+    public ENTITY_TYPE GetEntityType(){return ENTITY_TYPE.ENT_CART;}
 
     @Override
     public String GetType() {
@@ -145,6 +139,7 @@ public class SmurfEntity implements EntityBase, Collidable{
         if (_other.GetType() == "BoulderEntity") //Another Entity
         {
             VibrateManager.Instance.startVibrate();
+            SetIsDone(true);
         }
     }
 }
