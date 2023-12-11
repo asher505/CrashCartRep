@@ -12,11 +12,11 @@ import kotlin.math.UMathKt;
 import kotlin.random.Random;
 import kotlin.random.URandomKt;
 
-public class ArrowEntity implements EntityBase, Collidable{
+public class BarrierEntity implements EntityBase, Collidable{
 
-    public final static ArrowEntity Instance = new ArrowEntity();
+    public final static BarrierEntity Instance = new BarrierEntity();
 
-    private ArrowEntity(){
+    private BarrierEntity(){
 
     }
 
@@ -50,7 +50,7 @@ public class ArrowEntity implements EntityBase, Collidable{
     public void Init(SurfaceView _view) {
         // New method using our own resource manager : Returns pre-loaded one if exists
         // 2. Loading spritesheet
-        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.arrow_sprite), 1, 3, 3);
+        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.barrier_sprite), 1, 1, 1);
 
         // 3. Get some random position of x and y
         // This part is really random, You can have different ways to move or interact with your character.
@@ -67,7 +67,7 @@ public class ArrowEntity implements EntityBase, Collidable{
                 xPos = (_view.getWidth() / 9) * 3 + sideOffset * 2;
                 break;
             case 2:
-                xPos = (_view.getWidth() / 9) * 5 + sideOffset * 2;
+                xPos = (_view.getWidth() / 9) * 5 + sideOffset * 2 + _view.getWidth() / 20;
                 break;
         }
 
@@ -83,7 +83,7 @@ public class ArrowEntity implements EntityBase, Collidable{
     public void Update(float _dt) {
         if (GameSystem.Instance.GetIsPaused())
             return;
-        yPos += _dt * 1800;
+        yPos += _dt * 1000;
 
         // 4. Update spritesheet
         spritesheet.Update(_dt);
@@ -116,19 +116,19 @@ public class ArrowEntity implements EntityBase, Collidable{
         return;
     }
 
-    public static ArrowEntity Create()
+    public static BarrierEntity Create()
     {
-        ArrowEntity result = new ArrowEntity();
-        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_ARROW);
+        BarrierEntity result = new BarrierEntity();
+        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_BARRIER);
         return result;
     }
 
     @Override
-    public ENTITY_TYPE GetEntityType(){return ENTITY_TYPE.ENT_ARROW;}
+    public ENTITY_TYPE GetEntityType(){return ENTITY_TYPE.ENT_BARRIER;}
 
     @Override
     public String GetType() {
-        return "ArrowEntity";
+        return "BarrierEntity";
     }
 
     @Override
@@ -148,9 +148,9 @@ public class ArrowEntity implements EntityBase, Collidable{
 
     @Override
     public void OnHit(Collidable _other) {
-        if (_other.GetType() == "CartEntity") //Another Entity
+        //if (_other.GetType() == "CartEntity") //Another Entity
         {
-            SetIsDone(true);
+
         }
     }
 }

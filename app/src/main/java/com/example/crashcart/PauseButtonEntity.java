@@ -74,7 +74,7 @@ public class PauseButtonEntity implements EntityBase{
 
                 if (Collision.SphereToSphere((TouchManager.Instance.GetPosX()), TouchManager.Instance.GetPosY(),  0.0f, xPos, yPos, imgRadius) && buttonDelay >= 0.25){
                     Paused = true;
-                    VibrateManager.Instance.startVibrate();
+                    VibrateManager.Instance.startVibrate(50);
                     if (PauseConfirmDialogFragment.IsShown){
                         return;
                     }

@@ -17,11 +17,11 @@ public class VibrateManager {
         _vibrator = (Vibrator) _view.getContext().getSystemService(_view.getContext().VIBRATOR_SERVICE);
     }
 
-    public void startVibrate() {
+    public void startVibrate(int amplitude) {
         if (Build.VERSION.SDK_INT >= 26) {
             _vibrator.vibrate(VibrationEffect.createOneShot(150, 10));
         } else {
-            long pattern[] = {0, 50, 0};
+            long pattern[] = {0, amplitude, 0};
             _vibrator.vibrate(pattern, -1);
         }
     }

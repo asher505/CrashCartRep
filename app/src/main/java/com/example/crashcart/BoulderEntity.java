@@ -67,7 +67,7 @@ public class BoulderEntity implements EntityBase, Collidable{
                 xPos = (_view.getWidth() / 9) * 3 + sideOffset * 2;
                 break;
             case 2:
-                xPos = (_view.getWidth() / 9) * 5 + sideOffset * 2;
+                xPos = (_view.getWidth() / 9) * 5 + sideOffset * 2 + _view.getWidth() / 20;
                 break;
         }
 
@@ -81,8 +81,9 @@ public class BoulderEntity implements EntityBase, Collidable{
 
     @Override
     public void Update(float _dt) {
-
-        yPos += _dt * 1000;
+        if (GameSystem.Instance.GetIsPaused())
+            return;
+        yPos += _dt * 1500;
         if (GameSystem.Instance.GetIsPaused())
             return;
 

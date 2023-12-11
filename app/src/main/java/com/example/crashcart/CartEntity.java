@@ -136,10 +136,19 @@ public class CartEntity implements EntityBase, Collidable{
 
     @Override
     public void OnHit(Collidable _other) {
-        if (_other.GetType() == "BoulderEntity") //Another Entity
-        {
-            VibrateManager.Instance.startVibrate();
-            SetIsDone(true);
+        switch (_other.GetType()) {
+            case "BoulderEntity":
+                VibrateManager.Instance.startVibrate(1000);
+                SetIsDone(true);
+                break;
+            case "ArrowEntity":
+                VibrateManager.Instance.startVibrate(50);
+                //push cart back a square
+                break;
+            case "BarrierEntity":
+                VibrateManager.Instance.startVibrate(50);
+                //push cart back a square
+                break;
         }
     }
 }

@@ -53,7 +53,7 @@ public class RenderBackground implements EntityBase {
         if (GameSystem.Instance.GetIsPaused())
             return;
 
-        yPos += _dt * 750;
+        yPos += _dt * 1000;
         if (yPos > ScreenHeight   ){
             yPos = 0;
         }

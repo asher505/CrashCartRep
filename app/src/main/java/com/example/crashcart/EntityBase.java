@@ -15,6 +15,7 @@ public interface EntityBase
         ENT_CART,
         ENT_BOULDER,
         ENT_ARROW,
+        ENT_BARRIER,
         //ENT_PAUSE,
         ENT_TEXT,
          ENT_PAUSE,

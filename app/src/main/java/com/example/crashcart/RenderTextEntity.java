@@ -24,6 +24,8 @@ public class RenderTextEntity implements EntityBase {
     long lastFPSTime = 0;
     float fps;
 
+    float score;
+
     // Define a name to the font object
     protected Typeface myfont;
 
@@ -52,6 +54,8 @@ public class RenderTextEntity implements EntityBase {
 
     @Override
     public void Update(float _dt) {
+        if (GameSystem.Instance.GetIsPaused())
+            return;
         //Get the framerate fps number
         long currenttime = System.currentTimeMillis();
         lastTime = currenttime;
@@ -61,6 +65,8 @@ public class RenderTextEntity implements EntityBase {
             frameCount = 0;
         }
         frameCount++;
+
+        score+= _dt / 4;
     }
 
     @Override
@@ -70,6 +76,10 @@ public class RenderTextEntity implements EntityBase {
         paint.setTextSize(50);
 
         _canvas.drawText("FPS " + fps, 30, 80, paint);
+
+        paint.setTextSize(80);
+
+        _canvas.drawText("Score: " + Math.round(score * 10), 30, 160, paint);
     }
 
     @Override

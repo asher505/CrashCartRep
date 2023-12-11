@@ -27,7 +27,8 @@ public class MainGameSceneState implements StateBase {
         // Example to include another Renderview for Pause Button
         CartEntity.Create();
         //BoulderEntity.Create();
-        ArrowEntity.Create();
+        //ArrowEntity.Create();
+        //BarrierEntity.Create();
         PauseButtonEntity.Create();
         RenderTextEntity.Create();
     }
@@ -51,16 +52,11 @@ public class MainGameSceneState implements StateBase {
 
     @Override
     public void Update(float _dt) {
-        obstacleTimer += _dt;
 
-        // generate obstacles
-        if (obstacleTimer > 3f){
-            obstacleTimer = 0f;
-            obstacleRandom = Random.Default.nextInt(100);
-            if (obstacleRandom < 100){
-                //BoulderEntity.Create();
-            }
-        }
+
+        ObstacleGenerator(_dt);
+        ObstacleGenerator(_dt);
+        ObstacleGenerator(_dt);
 
         EntityManager.Instance.Update(_dt);
 
@@ -68,6 +64,22 @@ public class MainGameSceneState implements StateBase {
 
             //6. Example of touch on screen in the main game to trigger back to Main menu
             //StateManager.Instance.ChangeState("Mainmenu");
+        }
+    }
+
+    private void ObstacleGenerator(float _dt)
+    {
+        obstacleTimer += _dt;
+        // generate obstacles
+        if (obstacleTimer > 3f) {
+            obstacleTimer = 0f;
+            obstacleRandom = Random.Default.nextInt(100);
+            if (obstacleRandom < 40) //40%
+                BarrierEntity.Create();
+            else if (obstacleRandom < 70) //30%
+                ArrowEntity.Create();
+            else
+                BoulderEntity.Create(); //30%
         }
     }
 }
