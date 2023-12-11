@@ -5,8 +5,12 @@ import android.graphics.Canvas;
 import android.os.Vibrator;
 import android.os.Build;
 import android.os.VibrationEffect;
+import android.util.Log;
 import android.view.SurfaceView;
-import java.util.Random;
+
+import kotlin.math.UMathKt;
+import kotlin.random.Random;
+import kotlin.random.URandomKt;
 
 public class BoulderEntity implements EntityBase, Collidable{
 
@@ -53,9 +57,21 @@ public class BoulderEntity implements EntityBase, Collidable{
 
         // In java util library, random generator
         //Random ranGen = new Random();
+        int lane = Random.Default.nextInt(2);
+        float sideOffset = _view.getWidth() / 10;
+        switch (lane){
+            case 0:
+                xPos = (_view.getWidth() / 9) + sideOffset;
+                break;
+            case 1:
+                xPos = (_view.getWidth() / 9) * 3 + sideOffset * 2;
+                break;
+            case 2:
+                xPos = (_view.getWidth() / 9) * 5 + sideOffset * 2;
+                break;
+        }
 
-        xPos = _view.getWidth() / 2;
-        yPos = _view.getHeight() / 2;
+        yPos = -_view.getHeight();
 
 //        xDir = ranGen.nextFloat() * 100.0f - 50.0f;
 //        yDir = ranGen.nextFloat() * 100.0f - 50.0f;
@@ -66,6 +82,7 @@ public class BoulderEntity implements EntityBase, Collidable{
     @Override
     public void Update(float _dt) {
 
+        yPos += _dt * 1000;
         if (GameSystem.Instance.GetIsPaused())
             return;
 
@@ -127,7 +144,7 @@ public class BoulderEntity implements EntityBase, Collidable{
 
     @Override
     public float GetRadius() {
-        return spritesheet.GetHeight() * 0.5f;
+        return spritesheet.GetHeight() * 0.3f;
     }
 
     @Override

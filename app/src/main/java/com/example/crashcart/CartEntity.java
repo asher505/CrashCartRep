@@ -116,7 +116,7 @@ public class CartEntity implements EntityBase, Collidable{
 
     @Override
     public String GetType() {
-        return "SmurfEntity";
+        return "CartEntity";
     }
 
     @Override
@@ -131,7 +131,7 @@ public class CartEntity implements EntityBase, Collidable{
 
     @Override
     public float GetRadius() {
-        return spritesheet.GetHeight() * 0.5f;
+        return spritesheet.GetHeight() * 0.4f;
     }
 
     @Override
