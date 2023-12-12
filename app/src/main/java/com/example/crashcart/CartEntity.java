@@ -27,6 +27,8 @@ public class CartEntity implements EntityBase, Collidable{
 
     @Override
     public void SetIsDone(boolean _isDone) {
+        LoseScreenDialogFragment newLose = new LoseScreenDialogFragment();
+        newLose.show(GamePage.Instance.getSupportFragmentManager(), "LoseScreen");
         isDone = _isDone;
     }
 
