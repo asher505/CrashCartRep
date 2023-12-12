@@ -74,6 +74,7 @@ public class MainGameSceneState implements StateBase {
         obstacleTimer += _dt;
         // generate obstacles
         if (obstacleTimer > 3f) {
+            CoinEntity.Create();
             obstacleTimer = 0f;
             obstacleRandom = Random.Default.nextInt(100);
             if (obstacleRandom < 40) //40%
