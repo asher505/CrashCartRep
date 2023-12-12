@@ -28,6 +28,8 @@ public class LoseScreenDialogFragment extends DialogFragment {
                 .setPositiveButton("Exit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        StateManager.Instance.ChangeState("MainMenu"); // Press Start button
+
                         // We will define what to do when +ve button is pressed
                         // To pause if press YES.
                         // Gamesystem have written 2 methods to check if pause.
@@ -39,7 +41,7 @@ public class LoseScreenDialogFragment extends DialogFragment {
                 .setNegativeButton("Restart", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        StateManager.Instance.ChangeState("MainGame"); // Press Start button
                         // We will define what to do when -ve button is pressed
                         // Do not want to pause.
                         IsShown = false;

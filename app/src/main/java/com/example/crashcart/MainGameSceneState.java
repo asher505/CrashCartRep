@@ -21,7 +21,7 @@ public class MainGameSceneState implements StateBase {
     @Override
     public void OnEnter(SurfaceView _view)
     {
-        AudioManager.Instance.PlayAudio(R.raw.bgm, 0.9f);
+        AudioManager.Instance.PlayLoopAudio(R.raw.bgm, 1f);
         // 3. Create Background 
         RenderBackground.Create();
         // Example to include another Renderview for Pause Button

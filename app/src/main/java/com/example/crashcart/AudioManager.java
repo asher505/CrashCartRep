@@ -37,6 +37,24 @@ public class AudioManager {
         }
     }
 
+    public void PlayLoopAudio(int _id, float _volume)
+    {
+        // if audio is loaded
+        if(audioMap.containsKey(_id))
+        {
+            // have the clip
+            MediaPlayer curr = audioMap.get(_id);
+            curr.setLooping(true);
+            curr.start();
+        }
+        else {
+            MediaPlayer curr = MediaPlayer.create(view.getContext(), _id);
+            audioMap.put(_id, curr);
+            curr.setLooping(true);
+            curr.start();
+        }
+    }
+
     public void StopAudio(int _id)
     {
         MediaPlayer curr = audioMap.get(_id);

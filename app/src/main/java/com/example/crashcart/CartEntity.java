@@ -172,6 +172,7 @@ public class CartEntity implements EntityBase, Collidable{
 
     public static CartEntity Create()
     {
+        AudioManager.Instance.PlayLoopAudio(R.raw.railwaysfx, 0.4f);
         CartEntity result = new CartEntity();
         EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_CART);
         return result;
@@ -204,15 +205,23 @@ public class CartEntity implements EntityBase, Collidable{
     public void OnHit(Collidable _other) {
         switch (_other.GetType()) {
             case "BoulderEntity":
+                AudioManager.Instance.PlayAudio(R.raw.bouldersfx, 1f);
                 VibrateManager.Instance.startVibrate(1000);
                 SetIsDone(true);
                 break;
             case "ArrowEntity":
+                AudioManager.Instance.PlayAudio(R.raw.arrowsfx, 1f);
                 VibrateManager.Instance.startVibrate(50);
                 //push cart back a square
                 break;
             case "BarrierEntity":
+                AudioManager.Instance.PlayAudio(R.raw.barriersfx, 1f);
                 VibrateManager.Instance.startVibrate(50);
+                //push cart back a square
+                break;
+            case "CoinEntity":
+                AudioManager.Instance.PlayAudio(R.raw.coinsfx, 1f);
+                VibrateManager.Instance.startVibrate(20);
                 //push cart back a square
                 break;
         }
