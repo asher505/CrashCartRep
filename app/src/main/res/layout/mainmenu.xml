@@ -39,8 +39,11 @@
         android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="642dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="655dp"
         android:layout_marginRight="164dp"
+        android:layout_marginBottom="-4dp"
         android:background="@drawable/shop"
         android:contentDescription="go to shop" />
 
@@ -50,7 +53,7 @@
         android:layout_height="70dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="645dp"
+        android:layout_marginTop="658dp"
         android:layout_marginRight="35dp"
         android:background="@drawable/settings"
         android:contentDescription="go to settings page" />
@@ -61,8 +64,10 @@
         android:layout_height="70dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="647dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="668dp"
         android:layout_marginRight="305dp"
+        android:layout_marginBottom="-7dp"
         android:background="@drawable/leaderboard"
         android:contentDescription="go to leaderboard page" />
 

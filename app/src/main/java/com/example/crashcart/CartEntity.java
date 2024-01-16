@@ -43,8 +43,12 @@ public class CartEntity extends Accelerometer implements EntityBase, Collidable 
 
     @Override
     public void SetIsDone(boolean _isDone) {
-
-        GameSystem.Instance.SaveEditBegin();
+        Log.d("hey", "new: " + Integer.toString(roundedScore));
+        Log.d("hey", "old: " + Integer.toString(GameSystem.Instance.GetIntFromSave("Score")));
+        if (roundedScore > GameSystem.Instance.GetIntFromSave("Score"));
+        {
+            Log.d("hey", "new highscore");
+            GameSystem.Instance.SaveEditBegin();
 //        if (roundedScore > GameSystem.Instance.GetIntFromSave("hs1"))
 //            GameSystem.Instance.SetIntInSave("hs1", roundedScore);
 //        else if (roundedScore > GameSystem.Instance.GetIntFromSave("hs2"))
@@ -55,8 +59,9 @@ public class CartEntity extends Accelerometer implements EntityBase, Collidable 
 //            GameSystem.Instance.SetIntInSave("hs4",roundedScore);
 //        else if (roundedScore > GameSystem.Instance.GetIntFromSave("hs5"))
 //            GameSystem.Instance.SetIntInSave("hs5",roundedScore);
-            GameSystem.Instance.SetIntInSave("Score",roundedScore);
-        GameSystem.Instance.SaveEditEnd();
+            GameSystem.Instance.SetIntInSave("Score", roundedScore);
+            GameSystem.Instance.SaveEditEnd();
+        }
         LoseScreenDialogFragment newLose = new LoseScreenDialogFragment();
         newLose.show(GamePage.Instance.getSupportFragmentManager(), "LoseScreen");
 

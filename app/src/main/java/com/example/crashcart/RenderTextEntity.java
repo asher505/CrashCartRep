@@ -50,7 +50,7 @@ public class RenderTextEntity implements EntityBase {
     @Override
     public void Init(SurfaceView _view) {
         // Load the font.
-        myfont = Typeface.createFromAsset(_view.getContext().getAssets(), "honeybiscuitfont.ttf");
+        myfont = Typeface.createFromAsset(_view.getContext().getAssets(), "fruitstarfont.ttf");
 
         isInit = true;
     }

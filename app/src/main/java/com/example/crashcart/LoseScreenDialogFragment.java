@@ -43,7 +43,7 @@ public class LoseScreenDialogFragment extends DialogFragment {
                 m_Text = input.getText().toString();
                 if (m_Text == "")
                     m_Text = "Anon";
-                GameSystem.Instance.SetIntInSave(m_Text, CartEntity.roundedScore);
+                //GameSystem.Instance.SetIntInSave(m_Text, CartEntity.roundedScore);
                 // We will define what to do when +ve button is pressed
                 // To pause if press YES.
                 // Gamesystem have written 2 methods to check if pause.

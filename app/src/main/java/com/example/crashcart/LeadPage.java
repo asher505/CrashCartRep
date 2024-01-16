@@ -3,35 +3,30 @@ package com.example.crashcart;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class LeadPage extends Activity implements OnClickListener, StateBase {
 
     private Button btn_back;
 
-//    Paint paint = new Paint();
-//    private int red = 0, green = 0, blue = 0;
-//    protected Typeface myfont;
+    private TextView scoreText;
 
     @Override
     protected void onCreate(Bundle SaveInstanceState){
         super.onCreate(SaveInstanceState);
-
+        Log.d("arghhhhh", "test");
         setContentView(R.layout.leadpage);
-
         //NEVER import R *
         //when android studio tells you to import R, DO NOT do it
         //whenm u see this message, it will mean xml has an error.
 
-
+        scoreText = (TextView) findViewById(R.id.scoreText);
         btn_back = (Button) findViewById(R.id.btn_back);
         btn_back.setOnClickListener(this);
         // this allows the correct button to be assigned to the object name and
@@ -40,7 +35,10 @@ public class LeadPage extends Activity implements OnClickListener, StateBase {
         // when the specific button is clicked / touch
         // it knows what to do
 
+
         StateManager.Instance.AddState(new ShopPage());
+
+        scoreText.setText("Score: " + Integer.toString(GameSystem.Instance.GetIntFromSave("Score")));
     }
 
     @Override
