@@ -85,7 +85,7 @@ public class BoulderEntity implements EntityBase, Collidable{
     public void Update(float _dt) {
         if (GameSystem.Instance.GetIsPaused())
             return;
-        yPos += _dt * 1500 * (accelerometer.Instance.GetTilt() * 0.8);
+        yPos += _dt * 1500 * (5 - accelerometer.Instance.GetTilt() * 0.8);
         if (GameSystem.Instance.GetIsPaused())
             return;
 

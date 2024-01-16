@@ -66,9 +66,10 @@ public class RenderBackground extends Accelerometer implements EntityBase {
             return;
 
 
-        //scroll speed
-        yPos += (_dt * 1000) *  accelerometer.Instance.GetTilt();
-        if (yPos > ScreenHeight   ){
+        // scroll speed
+        yPos += (_dt * 1000 * (5 - accelerometer.Instance.GetTilt()));
+
+        if (yPos > ScreenHeight) {
             yPos = 0;
         }
 
