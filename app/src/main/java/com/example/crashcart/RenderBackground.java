@@ -24,10 +24,10 @@ public class RenderBackground extends Accelerometer implements EntityBase {
     private static Accelerometer accelerometer;
     private Bitmap scaledbmp = null;
 
-    public RenderBackground(Accelerometer accelerometer) {
-
-        this.accelerometer = accelerometer.Instance;
-    }
+//    public RenderBackground(Accelerometer accelerometer) {
+//
+//        this.accelerometer = accelerometer.Instance;
+//    }
 
     @Override
     public String GetType() {
@@ -101,7 +101,7 @@ public class RenderBackground extends Accelerometer implements EntityBase {
     public ENTITY_TYPE GetEntityType(){return ENTITY_TYPE.ENT_DEFAULT;}
 
     public static RenderBackground Create() {
-        RenderBackground result = new RenderBackground(accelerometer);
+        RenderBackground result = new RenderBackground();
         EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_DEFAULT);
         return result;
     }

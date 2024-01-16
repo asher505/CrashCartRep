@@ -23,6 +23,7 @@ public class BarrierEntity implements EntityBase, Collidable{
     // 1. Declare the use of spritesheet using Sprite class.
     private Sprite spritesheet = null;
 
+    private static Accelerometer accelerometer;
     private boolean isDone = false;
     private boolean isInit = false;
 
@@ -83,7 +84,7 @@ public class BarrierEntity implements EntityBase, Collidable{
     public void Update(float _dt) {
         if (GameSystem.Instance.GetIsPaused())
             return;
-        yPos += _dt * 1000;
+        yPos += _dt * 1000 * (accelerometer.Instance.GetTilt() * 0.8);
 
         // 4. Update spritesheet
         spritesheet.Update(_dt);
