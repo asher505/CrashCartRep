@@ -32,6 +32,7 @@ public class ArrowEntity implements EntityBase, Collidable{
     // For use with the TouchManager.class
     private boolean hasTouched = false;
 
+    private static Accelerometer accelerometer;
     private Vibrator _vibrator;
 
     int ScreenWidth, ScreenHeight;
@@ -84,7 +85,7 @@ public class ArrowEntity implements EntityBase, Collidable{
         if (GameSystem.Instance.GetIsPaused())
             return;
 
-        yPos += _dt * 1800;
+        yPos += _dt * 1800  * (accelerometer.Instance.GetTilt() * 0.8);
 
         // 4. Update spritesheet
         spritesheet.Update(_dt);
