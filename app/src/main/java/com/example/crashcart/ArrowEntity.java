@@ -83,6 +83,7 @@ public class ArrowEntity implements EntityBase, Collidable{
     public void Update(float _dt) {
         if (GameSystem.Instance.GetIsPaused())
             return;
+
         yPos += _dt * 1800;
 
         // 4. Update spritesheet

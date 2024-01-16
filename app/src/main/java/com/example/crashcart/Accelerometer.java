@@ -81,14 +81,20 @@ public class Accelerometer implements SensorEventListener {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
 
             // Handle sensor changes
-            values = event.values;
+            //values = event.values;
             //values[0] = event.values[0];
-            //values[1] = event.values[1];
+            values[1] = event.values[1];
+            if (event.values[1] > 4) {
+                values[1] = 4;
+            }
+            if (event.values[1] < 1) {
+                values[1] = 1;
+            }
 
             Log.d(TAG, "SensorChanged X: " + values[0]);
             Log.d(TAG, "SensorChanged Y: " + values[1]);
 
-            GetTilt();
+            //GetTilt();
         }
     }
 
