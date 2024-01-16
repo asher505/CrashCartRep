@@ -20,6 +20,7 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
     private ImageButton btn_start; //int a
 
     private ImageButton btn_shop; //int a
+    private ImageButton btn_lead; //int a
 
     private Button btn_back;
 
@@ -40,6 +41,9 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
 
         btn_shop = (ImageButton) findViewById(R.id.btn_shop);
         btn_shop.setOnClickListener(this);
+
+        btn_lead = (ImageButton) findViewById(R.id.btn_leaderboard);
+        btn_lead.setOnClickListener(this);
 
         btn_back = (Button) findViewById(R.id.btn_back);
         btn_back.setOnClickListener(this);
@@ -73,6 +77,10 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
             intent.setClass(this,GamePage.class);
             StateManager.Instance.ChangeState("MainGame"); // Press Start button
             //Goes to the MainGameSceneState hence thats why need to set class to Game
+        }
+        if (v == btn_lead){
+            intent.setClass(this,LeadPage.class);
+            StateManager.Instance.ChangeState("LeadPage"); // Press shop button
         }
         if (v == btn_shop){
 

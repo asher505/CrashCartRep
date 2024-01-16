@@ -34,15 +34,15 @@
         android:textSize="18dp" />
 
     <ImageButton
-        android:id="@+id/btn_leaderboard"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:id="@+id/btn_shop"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="625dp"
-        android:layout_marginRight="295dp"
-        android:background="@drawable/leaderboard"
-        android:contentDescription="go to leaderboard page" />
+        android:layout_marginTop="642dp"
+        android:layout_marginRight="164dp"
+        android:background="@drawable/shop"
+        android:contentDescription="go to shop" />
 
     <ImageButton
         android:id="@+id/btn_settings"
@@ -50,19 +50,20 @@
         android:layout_height="70dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="623dp"
-        android:layout_marginRight="25dp"
+        android:layout_marginTop="645dp"
+        android:layout_marginRight="35dp"
         android:background="@drawable/settings"
         android:contentDescription="go to settings page" />
 
     <ImageButton
-        android:id="@+id/btn_shop"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:id="@+id/btn_leaderboard"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="623dp"
-        android:layout_marginRight="160dp"
-        android:background="@drawable/shop"
-        android:contentDescription="go to shop" />
+        android:layout_marginTop="647dp"
+        android:layout_marginRight="305dp"
+        android:background="@drawable/leaderboard"
+        android:contentDescription="go to leaderboard page" />
+
 </RelativeLayout>

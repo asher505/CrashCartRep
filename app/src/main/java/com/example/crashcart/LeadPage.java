@@ -3,6 +3,9 @@ package com.example.crashcart;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.SurfaceView;
 import android.view.View;
@@ -13,6 +16,10 @@ import android.widget.ImageButton;
 public class LeadPage extends Activity implements OnClickListener, StateBase {
 
     private Button btn_back;
+
+//    Paint paint = new Paint();
+//    private int red = 0, green = 0, blue = 0;
+//    protected Typeface myfont;
 
     @Override
     protected void onCreate(Bundle SaveInstanceState){
@@ -94,9 +101,17 @@ public class LeadPage extends Activity implements OnClickListener, StateBase {
 
     @Override
     public void Render(Canvas _canvas) {
-
+//        paint.setARGB(255, red, green, blue); // Text is black and not transparent
+//        paint.setTypeface(myfont);
+//
+//        String scoreText = String.format("High Score: %d", GameSystem.Instance.GetIntFromSave("Score"));
+//        paint.setColor(Color.BLACK);
+//        paint.setTextSize(64);
+//        _canvas.drawText(scoreText, 500, 200, paint);
     }
-
+    public int GetRenderLayer(){
+        return LayerConstants.RENDERTEXT_LAYER;
+    }
     @Override
     public void Update(float _dt) {
 
