@@ -152,5 +152,10 @@ public class ArrowEntity implements EntityBase, Collidable{
         {
             SetIsDone(true);
         }
+        if (_other.GetType() == "BoulderEntity")
+        {
+            AudioManager.Instance.PlayAudio(R.raw.arrowsfx, 1f);
+            SetIsDone(true);
+        }
     }
 }

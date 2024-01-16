@@ -149,7 +149,8 @@ public class CoinEntity implements EntityBase, Collidable{
     @Override
     public void OnHit(Collidable _other) {
         if (_other.GetType() == "CartEntity"
-                || _other.GetType() == "BarrierEntity") //Another Entity
+                || _other.GetType() == "BarrierEntity"
+                || _other.GetType() == "BoulderEntity") //Another Entity
         {
             SetIsDone(true);
         }
