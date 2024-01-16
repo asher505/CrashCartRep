@@ -111,6 +111,12 @@ public class CartEntity extends Accelerometer implements EntityBase, Collidable 
 
         if (GameSystem.Instance.GetIsPaused())
             return;
+
+        if(yPos > 2000)
+        {
+            SetIsDone(true);
+        }
+
         score += _dt / 4;
         roundedScore = Math.round(CartEntity.score * 10);
         spritesheet.Update(_dt);
@@ -321,16 +327,19 @@ public class CartEntity extends Accelerometer implements EntityBase, Collidable 
                 AudioManager.Instance.PlayAudio(R.raw.bouldersfx, 1f);
                 VibrateManager.Instance.startVibrate(1000);
                 SetIsDone(true);
+
                 break;
             case "ArrowEntity":
                 AudioManager.Instance.PlayAudio(R.raw.arrowsfx, 1f);
                 VibrateManager.Instance.startVibrate(50);
                 //push cart back a square
+                yPos += 255;
                 break;
             case "BarrierEntity":
                 AudioManager.Instance.PlayAudio(R.raw.barriersfx, 1f);
                 VibrateManager.Instance.startVibrate(50);
                 //push cart back a square
+                yPos += 255;
                 break;
             case "CoinEntity":
                 AudioManager.Instance.PlayAudio(R.raw.coinsfx, 1f);

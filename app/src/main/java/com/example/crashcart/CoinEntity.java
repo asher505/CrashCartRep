@@ -84,10 +84,11 @@ public class CoinEntity implements EntityBase, Collidable{
     public void Update(float _dt) {
         if (GameSystem.Instance.GetIsPaused())
             return;
-        yPos += _dt * 1000 * (accelerometer.Instance.GetTilt() * 0.6);
+        yPos += _dt * 1000 * ((5 - accelerometer.Instance.GetTilt()) * 0.6);
 
         // 4. Update spritesheet
         spritesheet.Update(_dt);
+
     }
 
 

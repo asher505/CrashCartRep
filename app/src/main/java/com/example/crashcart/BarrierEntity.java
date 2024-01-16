@@ -84,7 +84,7 @@ public class BarrierEntity implements EntityBase, Collidable{
     public void Update(float _dt) {
         if (GameSystem.Instance.GetIsPaused())
             return;
-        yPos += _dt * 1000 * (accelerometer.Instance.GetTilt());
+        yPos += _dt * 1000 * (5 - accelerometer.Instance.GetTilt());
 
         // 4. Update spritesheet
         spritesheet.Update(_dt);

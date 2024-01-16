@@ -85,10 +85,11 @@ public class ArrowEntity implements EntityBase, Collidable{
         if (GameSystem.Instance.GetIsPaused())
             return;
 
-        yPos += _dt * 1800  * (accelerometer.Instance.GetTilt() * 0.8);
+        yPos += (_dt * 1800) - (5 - accelerometer.Instance.GetTilt());
 
         // 4. Update spritesheet
         spritesheet.Update(_dt);
+
     }
 
 
