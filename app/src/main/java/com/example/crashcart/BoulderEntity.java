@@ -150,10 +150,11 @@ public class BoulderEntity implements EntityBase, Collidable{
 
     @Override
     public void OnHit(Collidable _other) {
-        //if (_other.GetType() == "StarEntity") //Another Entity
-        {
-            //SetIsDone(true);
-            //Play an audio
-        }
+//        if (_other.GetType() == "BarrierEntity")
+//        {
+//            AudioManager.Instance.PlayAudio(R.raw.bouldersfx, 1f);
+//            SetIsDone(true);
+//            //Play an audio
+//        }
     }
 }

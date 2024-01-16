@@ -5,7 +5,8 @@ import android.view.SurfaceView;
 import java.util.Random;
 
 public class CartEntity implements EntityBase, Collidable{
-    
+    public static float score;
+    public static int roundedScore;
 	 // 1. Declare the use of spritesheet using Sprite class.
      private Sprite spritesheet = null;
 
@@ -27,6 +28,23 @@ public class CartEntity implements EntityBase, Collidable{
 
     @Override
     public void SetIsDone(boolean _isDone) {
+
+        GameSystem.Instance.SaveEditBegin();
+//        if (roundedScore > GameSystem.Instance.GetIntFromSave("hs1"))
+//            GameSystem.Instance.SetIntInSave("hs1", roundedScore);
+//        else if (roundedScore > GameSystem.Instance.GetIntFromSave("hs2"))
+//            GameSystem.Instance.SetIntInSave("hs2",roundedScore);
+//        else if (roundedScore > GameSystem.Instance.GetIntFromSave("hs3"))
+//            GameSystem.Instance.SetIntInSave("hs3",roundedScore);
+//        else if (roundedScore > GameSystem.Instance.GetIntFromSave("hs4"))
+//            GameSystem.Instance.SetIntInSave("hs4",roundedScore);
+//        else if (roundedScore > GameSystem.Instance.GetIntFromSave("hs5"))
+//            GameSystem.Instance.SetIntInSave("hs5",roundedScore);
+            GameSystem.Instance.SetIntInSave("Score",roundedScore);
+        GameSystem.Instance.SaveEditEnd();
+        LoseScreenDialogFragment newLose = new LoseScreenDialogFragment();
+        newLose.show(GamePage.Instance.getSupportFragmentManager(), "LoseScreen");
+
         isDone = _isDone;
     }
 
@@ -56,7 +74,8 @@ public class CartEntity implements EntityBase, Collidable{
 
         if (GameSystem.Instance.GetIsPaused())
             return;
-
+        score += _dt / 4;
+        roundedScore = Math.round(CartEntity.score * 10);
         spritesheet.Update(_dt);
         // 5. Deal with the touch on screen for interaction of the image using collision check
         if (TouchManager.Instance.HasTouch())
@@ -83,7 +102,7 @@ public class CartEntity implements EntityBase, Collidable{
 
     @Override
     public void Render(Canvas _canvas) {
-
+        score += 0;
         // This is for our sprite animation!
         spritesheet.Render(_canvas, (int)xPos, (int)yPos);
     }
@@ -106,6 +125,8 @@ public class CartEntity implements EntityBase, Collidable{
 
     public static CartEntity Create()
     {
+        score = 0;
+        AudioManager.Instance.PlayLoopAudio(R.raw.railwaysfx, 0.4f);
         CartEntity result = new CartEntity();
         EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_CART);
         return result;

@@ -1,6 +1,7 @@
 package com.example.crashcart;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.view.SurfaceView;
@@ -17,6 +18,8 @@ public class RenderTextEntity implements EntityBase {
     private boolean isDone = false;
     private boolean isInit = false;
 
+
+
     // We want to draw text/ have a text that shows the framerate of the build running.  FPS : 60
 
     int frameCount;
@@ -24,7 +27,7 @@ public class RenderTextEntity implements EntityBase {
     long lastFPSTime = 0;
     float fps;
 
-    float score;
+
 
     // Define a name to the font object
     protected Typeface myfont;
@@ -66,7 +69,7 @@ public class RenderTextEntity implements EntityBase {
         }
         frameCount++;
 
-        score+= _dt / 4;
+
     }
 
     @Override
@@ -79,7 +82,14 @@ public class RenderTextEntity implements EntityBase {
 
         paint.setTextSize(80);
 
-        _canvas.drawText("Score: " + Math.round(score * 10), 30, 160, paint);
+        _canvas.drawText("Score: " + CartEntity.roundedScore, 30, 160, paint);
+
+
+        String scoreText = String.format("High Score: %d", GameSystem.Instance.GetIntFromSave("Score"));
+        paint.setColor(Color.BLACK);
+        paint.setTextSize(64);
+
+        _canvas.drawText(scoreText, 10, 220, paint);
     }
 
     @Override

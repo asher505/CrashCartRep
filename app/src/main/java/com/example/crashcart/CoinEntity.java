@@ -12,11 +12,11 @@ import kotlin.math.UMathKt;
 import kotlin.random.Random;
 import kotlin.random.URandomKt;
 
-public class BarrierEntity implements EntityBase, Collidable{
+public class CoinEntity implements EntityBase, Collidable{
 
-    public final static BarrierEntity Instance = new BarrierEntity();
+    public final static CoinEntity Instance = new CoinEntity();
 
-    private BarrierEntity(){
+    private CoinEntity(){
 
     }
 
@@ -50,7 +50,7 @@ public class BarrierEntity implements EntityBase, Collidable{
     public void Init(SurfaceView _view) {
         // New method using our own resource manager : Returns pre-loaded one if exists
         // 2. Loading spritesheet
-        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.barrier_sprite), 1, 1, 1);
+        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.coin_sprite), 1, 6, 6);
 
         // 3. Get some random position of x and y
         // This part is really random, You can have different ways to move or interact with your character.
@@ -67,7 +67,7 @@ public class BarrierEntity implements EntityBase, Collidable{
                 xPos = (_view.getWidth() / 9) * 3 + sideOffset * 2;
                 break;
             case 2:
-                xPos = (_view.getWidth() / 9) * 5 + sideOffset * 2 + _view.getWidth() / 20;
+                xPos = (_view.getWidth() / 9) * 5 + sideOffset * 2;
                 break;
         }
 
@@ -116,19 +116,19 @@ public class BarrierEntity implements EntityBase, Collidable{
         return;
     }
 
-    public static BarrierEntity Create()
+    public static CoinEntity Create()
     {
-        BarrierEntity result = new BarrierEntity();
-        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_BARRIER);
+        CoinEntity result = new CoinEntity();
+        EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_COIN);
         return result;
     }
 
     @Override
-    public ENTITY_TYPE GetEntityType(){return ENTITY_TYPE.ENT_BARRIER;}
+    public ENTITY_TYPE GetEntityType(){return ENTITY_TYPE.ENT_COIN;}
 
     @Override
     public String GetType() {
-        return "BarrierEntity";
+        return "CoinEntity";
     }
 
     @Override
@@ -148,11 +148,11 @@ public class BarrierEntity implements EntityBase, Collidable{
 
     @Override
     public void OnHit(Collidable _other) {
-        if (_other.GetType() == "BoulderEntity")
+        if (_other.GetType() == "CartEntity"
+                || _other.GetType() == "BarrierEntity"
+                || _other.GetType() == "BoulderEntity") //Another Entity
         {
-            AudioManager.Instance.PlayAudio(R.raw.bouldersfx, 1f);
             SetIsDone(true);
-            //Play an audio
         }
     }
 }
