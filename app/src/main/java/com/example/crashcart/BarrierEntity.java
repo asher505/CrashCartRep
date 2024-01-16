@@ -148,9 +148,11 @@ public class BarrierEntity implements EntityBase, Collidable{
 
     @Override
     public void OnHit(Collidable _other) {
-        //if (_other.GetType() == "CartEntity") //Another Entity
+        if (_other.GetType() == "BoulderEntity")
         {
-
+            AudioManager.Instance.PlayAudio(R.raw.bouldersfx, 1f);
+            SetIsDone(true);
+            //Play an audio
         }
     }
 }

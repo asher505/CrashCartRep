@@ -5,6 +5,7 @@
 <!--    commenting-->
 
     <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.hardware.sensor.accelerometer"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -57,6 +58,17 @@
 <!--        </activity>-->
         <activity
             android:name = ".ShopPage"
+            android:screenOrientation="portrait"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name = ".LeadPage"
             android:screenOrientation="portrait"
             android:exported="true">
 

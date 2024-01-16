@@ -1,5 +1,7 @@
 package com.example.crashcart;
 
+import android.app.GameState;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -10,13 +12,19 @@ import kotlin.random.Random;
 // Created by TanSiewLan2021
 
 public class MainGameSceneState implements StateBase {
+    //public static final MainGameSceneState Instance = new MainGameSceneState();
     private float timer = 0.0f;
+
+    private static TouchManager touchManager;
+    private static Context context;
     float obstacleTimer = 0f;
     int obstacleRandom;
     @Override
     public String GetName() {
         return "MainGame";
     }
+
+
 
     @Override
     public void OnEnter(SurfaceView _view)
@@ -26,6 +34,7 @@ public class MainGameSceneState implements StateBase {
         RenderBackground.Create();
         // Example to include another Renderview for Pause Button
         CartEntity.Create();
+        Accelerometer.Create(_view);
         //BoulderEntity.Create();
         //ArrowEntity.Create();
         //BarrierEntity.Create();
@@ -45,15 +54,16 @@ public class MainGameSceneState implements StateBase {
 
     }
 
+
     @Override
     public void Render(Canvas _canvas)
     {
         EntityManager.Instance.Render(_canvas);
-
     }
 
     @Override
     public void Update(float _dt) {
+
 
 
         ObstacleGenerator(_dt);

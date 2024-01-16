@@ -4,13 +4,16 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.InputType;
+import android.util.Log;
+import android.widget.EditText;
 
 import androidx.fragment.app.DialogFragment;
 
 public class LoseScreenDialogFragment extends DialogFragment {
     // To use this to check if the dialog button is pressed
     public static boolean IsShown = false;
-
+    private String m_Text = "";
     @Override
     public Dialog onCreateDialog (Bundle savedInstanceState)
     {
@@ -24,29 +27,40 @@ public class LoseScreenDialogFragment extends DialogFragment {
 
         // int x, y = 0;
 
-        builder.setMessage("You lose")
-                .setPositiveButton("Exit", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        StateManager.Instance.ChangeState("MainMenu"); // Press Start button
+        builder.setTitle("You Scored " + CartEntity.roundedScore);
+        builder.setMessage("Enter your name.");
 
-                        // We will define what to do when +ve button is pressed
-                        // To pause if press YES.
-                        // Gamesystem have written 2 methods to check if pause.
-                        // In the entity,we will need to indicate in the update() method to pause if pause is triggered
-                        IsShown = false;
+// Set up the input
+        final EditText input = new EditText(getActivity());
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
 
-                    }
-                })
-                .setNegativeButton("Restart", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        StateManager.Instance.ChangeState("MainGame"); // Press Start button
-                        // We will define what to do when -ve button is pressed
-                        // Do not want to pause.
-                        IsShown = false;
-                    }
-                });
+
+        builder.setPositiveButton("Exit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                StateManager.Instance.ChangeState("Mainmenu"); // Press Start button
+                m_Text = input.getText().toString();
+                if (m_Text == "")
+                    m_Text = "Anon";
+                GameSystem.Instance.SetIntInSave(m_Text, CartEntity.roundedScore);
+                // We will define what to do when +ve button is pressed
+                // To pause if press YES.
+                // Gamesystem have written 2 methods to check if pause.
+                // In the entity,we will need to indicate in the update() method to pause if pause is triggered
+                IsShown = false;
+
+            }
+        });
+        builder.setNegativeButton("Restart", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //StateManager.Instance.ResetState("MainGame"); // Press Start button
+                // We will define what to do when -ve button is pressed
+                // Do not want to pause.
+                IsShown = false;
+            }
+        });
 
         //Create our customised Dialog popup
         return builder.create();

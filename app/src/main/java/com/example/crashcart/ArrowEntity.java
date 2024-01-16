@@ -83,6 +83,7 @@ public class ArrowEntity implements EntityBase, Collidable{
     public void Update(float _dt) {
         if (GameSystem.Instance.GetIsPaused())
             return;
+
         yPos += _dt * 1800;
 
         // 4. Update spritesheet
@@ -150,6 +151,11 @@ public class ArrowEntity implements EntityBase, Collidable{
     public void OnHit(Collidable _other) {
         if (_other.GetType() == "CartEntity") //Another Entity
         {
+            SetIsDone(true);
+        }
+        if (_other.GetType() == "BoulderEntity")
+        {
+            AudioManager.Instance.PlayAudio(R.raw.arrowsfx, 1f);
             SetIsDone(true);
         }
     }
