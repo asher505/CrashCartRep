@@ -1,12 +1,16 @@
 package com.example.crashcart;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.SurfaceView;
 
-public class RenderBackground implements EntityBase {
+public class RenderBackground extends Accelerometer implements EntityBase {
+
+    private static final String TAG ="RenderBack";
 
 	//7. Render a scrolling background
     private Bitmap bmp = null; //Graphic object. bmp is the name defined for this object
@@ -17,7 +21,13 @@ public class RenderBackground implements EntityBase {
 
     int ScreenWidth, ScreenHeight;
 
+    private static Accelerometer accelerometer;
     private Bitmap scaledbmp = null;
+
+    public RenderBackground(Accelerometer accelerometer) {
+
+        this.accelerometer = accelerometer.Instance;
+    }
 
     @Override
     public String GetType() {
@@ -34,6 +44,7 @@ public class RenderBackground implements EntityBase {
         isDone = _isDone;
     }
 
+
     @Override
     public void Init(SurfaceView _view){
         bmp = BitmapFactory.decodeResource(_view.getResources(), R.drawable.cc_railbase);
@@ -45,6 +56,7 @@ public class RenderBackground implements EntityBase {
         scaledbmp = Bitmap.createScaledBitmap(bmp, ScreenWidth, ScreenHeight, true);
     }
 
+
     @Override
     public void Update(float _dt){
         // horizontal scrolling
@@ -53,10 +65,14 @@ public class RenderBackground implements EntityBase {
         if (GameSystem.Instance.GetIsPaused())
             return;
 
-        yPos += _dt * 1000;
+
+        //scroll speed
+        yPos += (_dt * 1000) *  accelerometer.Instance.GetTilt();
         if (yPos > ScreenHeight   ){
             yPos = 0;
         }
+
+        Log.d(TAG, "Tilt Y: " + accelerometer.Instance.GetTilt());
     }
 
     @Override
@@ -84,8 +100,8 @@ public class RenderBackground implements EntityBase {
     @Override
     public ENTITY_TYPE GetEntityType(){return ENTITY_TYPE.ENT_DEFAULT;}
 
-    public static RenderBackground Create(){
-        RenderBackground result = new RenderBackground();
+    public static RenderBackground Create() {
+        RenderBackground result = new RenderBackground(accelerometer);
         EntityManager.Instance.AddEntity(result, ENTITY_TYPE.ENT_DEFAULT);
         return result;
     }
