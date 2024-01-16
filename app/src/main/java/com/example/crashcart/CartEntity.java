@@ -118,7 +118,7 @@ public class CartEntity extends Accelerometer implements EntityBase, Collidable 
         }
 
         score += _dt / 4;
-        roundedScore = Math.round(CartEntity.score * 10);
+        roundedScore = Math.round(CartEntity.score * 10 * ((5 - accelerometer.Instance.GetTilt()) / 2));
         spritesheet.Update(_dt);
         accelerometer.Update(_dt);
 
