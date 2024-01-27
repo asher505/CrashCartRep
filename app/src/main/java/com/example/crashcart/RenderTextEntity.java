@@ -9,7 +9,7 @@ import android.view.SurfaceView;
 public class RenderTextEntity implements EntityBase {
 
     // Paint Object - Helps to define color, size and varies use of the type.
-    Paint paint = new Paint();
+    static Paint paint = new Paint();
 
     // Color - RGB We are going to set 3 variable names to Red Green and Blue. So that we can use a range of numbers from 0 to 255 to play around ..
     // If you create a random numbers from 0 to 255 to be used in these 3 RGB variables, you can get rainbow, Disco text.
@@ -51,7 +51,6 @@ public class RenderTextEntity implements EntityBase {
     public void Init(SurfaceView _view) {
         // Load the font.
         myfont = Typeface.createFromAsset(_view.getContext().getAssets(), "fruitstarfont.ttf");
-
         isInit = true;
     }
 
@@ -84,6 +83,7 @@ public class RenderTextEntity implements EntityBase {
 
         _canvas.drawText("Score: " + CartEntity.roundedScore, 30, 160, paint);
 
+        _canvas.drawText("Coins: " + CoinEntity.coins, 30, 340, paint);
 
         String scoreText = String.format("High Score: %d", GameSystem.Instance.GetIntFromSave("Score"));
         paint.setColor(Color.BLACK);

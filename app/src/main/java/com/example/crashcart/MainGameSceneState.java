@@ -29,6 +29,7 @@ public class MainGameSceneState implements StateBase {
     @Override
     public void OnEnter(SurfaceView _view)
     {
+        CoinEntity.coins = GameSystem.Instance.GetIntFromSave("Coins");
         AudioManager.Instance.PlayLoopAudio(R.raw.bgm, 1f);
         // 3. Create Background 
         RenderBackground.Create();

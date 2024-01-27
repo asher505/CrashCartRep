@@ -16,6 +16,10 @@ public class CoinEntity implements EntityBase, Collidable{
 
     public final static CoinEntity Instance = new CoinEntity();
 
+    public static int coins;
+
+    private static final String TAG ="Coin ";
+
     private CoinEntity(){
 
     }
@@ -53,6 +57,7 @@ public class CoinEntity implements EntityBase, Collidable{
         // 2. Loading spritesheet
         spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.coin_sprite), 1, 6, 6);
 
+        //coins = GameSystem.Instance.GetIntFromSave("Coins");
         // 3. Get some random position of x and y
         // This part is really random, You can have different ways to move or interact with your character.
 
@@ -150,10 +155,18 @@ public class CoinEntity implements EntityBase, Collidable{
 
     @Override
     public void OnHit(Collidable _other) {
-        if (_other.GetType() == "CartEntity"
-                || _other.GetType() == "BarrierEntity"
-                || _other.GetType() == "BoulderEntity") //Another Entity
+        if (_other.GetType() == "CartEntity" || _other.GetType() == "BarrierEntity" || _other.GetType() == "BoulderEntity") //Another Entity
         {
+            if (_other.GetType() == "CartEntity")
+            {
+                ++coins;
+                GameSystem.Instance.SaveEditBegin();
+                GameSystem.Instance.SetIntInSave("Coins", coins);
+                GameSystem.Instance.SaveEditEnd();
+                int retrievedCoins = GameSystem.Instance.GetIntFromSave("Coins");
+                Log.d(TAG, "COINS: " + retrievedCoins);
+            }
+
             SetIsDone(true);
         }
     }

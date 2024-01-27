@@ -1,14 +1,21 @@
 package com.example.crashcart;
 
+import static com.example.crashcart.CoinEntity.coins;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class Mainmenu extends Activity implements OnClickListener, StateBase {
     //WE have 2 buttons. Start button and Back button
@@ -22,11 +29,20 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
     private ImageButton btn_shop; //int a
     private ImageButton btn_lead; //int a
 
+    static Paint paint = new Paint();
     private Button btn_back;
+    protected Typeface myfont;
+
+    private TextView coinText;
+    private int red = 0, green = 0, blue = 0;
+    private int coinValue;
 
     @Override
     protected void onCreate(Bundle SaveInstanceState){
         super.onCreate(SaveInstanceState);
+
+
+        int coinValue;
 
         setContentView(R.layout.mainmenu);
         //not sure if i need this to swicth to shop
@@ -55,6 +71,7 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
 
         StateManager.Instance.AddState(new Mainmenu());
 
+        RenderTextEntity.Create();
 //        //not sure if i need this to swicth to shop
 //        StateManager.Instance.AddState(new ShopPage());
     }
@@ -68,6 +85,8 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
         //we need to check if start or back button is clicked / touched on the screen
         // then after, decide what to do
         // if start button, it will go to another page example gamepage
+
+
 
         Intent intent = new Intent();
 
@@ -119,6 +138,10 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
     @Override
     public void OnEnter(SurfaceView _view) {
 
+        coinValue = GameSystem.Instance.GetIntFromSave("Coins");
+        myfont = Typeface.createFromAsset(_view.getContext().getAssets(), "fruitstarfont.ttf");
+        Log.d(TAG, "ON ENER==TEr: " );
+
     }
 
     @Override
@@ -126,9 +149,19 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
 
     }
 
+    private static final String TAG ="MainMenu ";
     @Override
     public void Render(Canvas _canvas) {
 
+
+        paint.setARGB(255, red, green, blue); // Text is black and not transparent
+        paint.setTypeface(myfont);
+        paint.setTextSize(50);
+
+        _canvas.drawText(String.valueOf(coinValue), 10, 220, paint);
+        _canvas.drawText("Coins: " + CoinEntity.coins, 30, 340, paint);
+
+        Log.d(TAG, "COINS MAINMENU: " + coinValue);
     }
 
     @Override

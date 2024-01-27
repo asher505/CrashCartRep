@@ -9,6 +9,7 @@ import android.view.SurfaceView;
 public class GameSystem {
     public final static GameSystem Instance = new GameSystem();
     public static final String SHARED_PREF_ID = "GameSaveFile";
+    public static final String COIN_KEY= "Coins";
     // Game stuff
     private boolean isPause = false;
     SharedPreferences sharedPref = null;
@@ -27,6 +28,7 @@ public class GameSystem {
     public void Init(SurfaceView _view)
     {
         sharedPref = GamePage.Instance.getSharedPreferences(SHARED_PREF_ID, 0);
+        sharedPref = GamePage.Instance.getSharedPreferences(COIN_KEY, 0);
         // 2. We will add all of our states into the state manager here!
         StateManager.Instance.AddState(new Mainmenu());
 
@@ -76,5 +78,16 @@ public class GameSystem {
     {
         return isPaused;
     }
+
+//    public void SaveCoins(int coins) {
+//        SharedPreferences.Editor editor = sharedPref.edit();
+//        editor.putInt(COIN_KEY, coins);
+//        editor.apply();
+//    }
+//
+//    // Retrieve coin value from SharedPreferences
+//    public int GetCoins() {
+//        return sharedPref.getInt(COIN_KEY, 0); // Default value is 0 if key not found
+//    }
 
 }
