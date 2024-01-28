@@ -28,6 +28,8 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
     private ImageButton btn_blue;
     private ImageButton btn_cat;
 
+    private ImageButton btn_cart;
+
     private Button btn_use;
 
     public static TextView coinText;
@@ -61,9 +63,11 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
 
         btn_back = (Button) findViewById(R.id.btn_back);
         btn_back.setOnClickListener(this);
+        btn_cart = (ImageButton) findViewById(R.id.Cart);
+        btn_cart.setOnClickListener(this);
         btn_blue = (ImageButton) findViewById(R.id.BlueCart);
         btn_blue.setOnClickListener(this);
-        btn_cat = (ImageButton) findViewById(R.id.BlueCart);
+        btn_cat = (ImageButton) findViewById(R.id.CatCart);
         btn_cat.setOnClickListener(this);
         btn_use = (Button) findViewById(R.id.btn_use);
         btn_use.setOnClickListener(this);
@@ -99,6 +103,14 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
              intent.setClass(this,Mainmenu.class);
              StateManager.Instance.ChangeState("Mainmenu");
              startActivity(intent);
+        }
+
+        if (v == btn_cart){
+
+                selectedCartType = DEFAULT_CART_TYPE;
+                Log.d(TAG, " selectedCartType : " +  selectedCartType);
+
+            //BE ABLE TO SELECT WHAT CART
         }
 
         if (v == btn_blue){

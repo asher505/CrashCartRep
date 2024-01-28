@@ -16,6 +16,7 @@
         android:layout_marginRight="7dp"
         android:background="@drawable/button"
         android:text="Back"
+        android:contentDescription="back"
         android:textColor="#C9BDFC"
         android:textSize="18dp" />
 
@@ -53,6 +54,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="489dp"
         android:layout_marginRight="143dp"
+        android:contentDescription="Add blue cart to your items"
         app:srcCompat="@drawable/bluecart" />
 
     <ImageButton
@@ -63,6 +65,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="490dp"
         android:layout_marginRight="276dp"
+        android:contentDescription="default cart"
         app:srcCompat="@drawable/cart" />
 
     <ImageButton
@@ -73,6 +76,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="490dp"
         android:layout_marginRight="9dp"
+        android:contentDescription="Add cat cart to your items"
         app:srcCompat="@drawable/catcart" />
 
 </RelativeLayout>
