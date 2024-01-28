@@ -75,4 +75,17 @@
         android:background="@drawable/leaderboard"
         android:contentDescription="go to leaderboard page" />
 
+    <TextView
+        android:id="@+id/coinText"
+        android:text="placeholder"
+        android:layout_width="201dp"
+        android:layout_height="132dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="23dp"
+        android:fontFamily="@font/font"
+        android:includeFontPadding="false"
+        android:textSize="48sp" />
+
 </RelativeLayout>

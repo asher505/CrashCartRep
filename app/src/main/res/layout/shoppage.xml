@@ -7,14 +7,42 @@
 
     <Button
         android:id="@+id/btn_back"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="154dp"
+        android:layout_height="86dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="560dp"
-        android:layout_marginRight="260dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginRight="7dp"
         android:background="@drawable/button"
         android:text="Back"
         android:textColor="#C9BDFC"
         android:textSize="18dp" />
+
+    <Button
+        android:id="@+id/btn_buy"
+        android:layout_width="172dp"
+        android:layout_height="36dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="566dp"
+        android:layout_marginRight="161dp"
+        android:background="@drawable/button"
+        android:text="BUY"
+        android:textColor="#C9BDFC"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/coinText"
+        android:layout_width="201dp"
+        android:layout_height="132dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="7dp"
+        android:fontFamily="@font/font"
+        android:includeFontPadding="false"
+        android:text="placeholder"
+        android:textSize="48sp" />
+
+
 </RelativeLayout>

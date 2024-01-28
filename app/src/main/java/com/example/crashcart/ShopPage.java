@@ -3,22 +3,49 @@ package com.example.crashcart;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 public class ShopPage extends Activity implements OnClickListener, StateBase {
 
+    public static int coinValue;
+
+    protected Typeface myfont;
+
+    private static final String TAG ="shoppagetag ";
     private Button btn_back;
+    private Button btn_buy;
+
+    public static TextView coinText;
 
     @Override
     protected void onCreate(Bundle SaveInstanceState){
         super.onCreate(SaveInstanceState);
 
+
         setContentView(R.layout.shoppage);
+        coinText = (TextView) findViewById(R.id.coinText);
+        coinValue = GameSystem.Instance.GetIntFromSave("Coins");
+        if (coinText == null)
+        {
+            Log.d(TAG, "oncreate coinText is NULL: ");
+        }
+        else
+        {
+            Log.d(TAG, "oncreate coinText is NOT NULL: ");
+        }
+        coinText.setText("Coins: " + coinValue);
+        updateCoinText(coinValue);
+
+
+
 
         //NEVER import R *
         //when android studio tells you to import R, DO NOT do it
@@ -26,7 +53,9 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
 
 
         btn_back = (Button) findViewById(R.id.btn_back);
+        btn_buy = (Button) findViewById(R.id.btn_buy);
         btn_back.setOnClickListener(this);
+        btn_buy.setOnClickListener(this);
         // this allows the correct button to be assigned to the object name and
         // for this case button
         // setonclicklistener to the specified button so that we know
@@ -58,13 +87,30 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
          if (v == btn_back){
              intent.setClass(this,Mainmenu.class);
              StateManager.Instance.ChangeState("Mainmenu");
+             startActivity(intent);
+        }
+
+        if (v == btn_buy){
+            coinValue = GameSystem.Instance.GetIntFromSave("Coins");
+            if(coinValue >= 2)
+            {
+                coinValue = coinValue - 2;
+
+                updateCoinText(coinValue);
+                GameSystem.Instance.SaveEditBegin();
+                GameSystem.Instance.SetIntInSave("Coins", coinValue);
+                GameSystem.Instance.SaveEditEnd();
+
+                Log.d(TAG, "Coins after buy: "+ coinValue);
+            }
+
         }
 
 //        // exit button
 //        else if (v == btn_quit){
 //            this.finishAffinity();
 //        }
-        startActivity(intent);
+
     }
 
     //Other 3 methods to be written here based on the Android activity lifecycle
@@ -85,6 +131,23 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
     @Override
     public void OnEnter(SurfaceView _view) {
 
+
+        coinValue = GameSystem.Instance.GetIntFromSave("Coins");
+        updateCoinText(coinValue);
+        myfont = Typeface.createFromAsset(_view.getContext().getAssets(), "fruitstarfont.ttf");
+    }
+
+    private void updateCoinText(int coinValue) {
+
+        Log.d(TAG, "updateCoinText called: ");
+        if (coinText != null) {
+            coinText.setText("Coins : " + coinValue);
+
+            Log.d(TAG, "UPDATED COIN VALUE: " + coinValue );
+        }
+        else {
+            Log.d(TAG, "coinText is NULL: ");
+        }
     }
 
     @Override

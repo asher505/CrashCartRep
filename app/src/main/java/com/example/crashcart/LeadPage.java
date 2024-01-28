@@ -92,6 +92,8 @@ public class LeadPage extends Activity implements OnClickListener, StateBase {
 
     }
 
+
+
     @Override
     public void OnExit() {
 
@@ -106,6 +108,8 @@ public class LeadPage extends Activity implements OnClickListener, StateBase {
 //        paint.setColor(Color.BLACK);
 //        paint.setTextSize(64);
 //        _canvas.drawText(scoreText, 500, 200, paint);
+
+
     }
     public int GetRenderLayer(){
         return LayerConstants.RENDERTEXT_LAYER;

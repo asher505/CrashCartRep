@@ -1,10 +1,8 @@
 package com.example.crashcart;
 
-import android.app.GameState;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+import android.os.Bundle;
 import android.view.SurfaceView;
 
 import kotlin.random.Random;
@@ -29,6 +27,7 @@ public class MainGameSceneState implements StateBase {
     @Override
     public void OnEnter(SurfaceView _view)
     {
+        CoinEntity.coins = GameSystem.Instance.GetIntFromSave("Coins");
         AudioManager.Instance.PlayLoopAudio(R.raw.bgm, 1f);
         // 3. Create Background 
         RenderBackground.Create();
@@ -41,6 +40,8 @@ public class MainGameSceneState implements StateBase {
         PauseButtonEntity.Create();
         RenderTextEntity.Create();
     }
+
+
     @Override
     public void OnExit() {
         if (AudioManager.Instance != null) {

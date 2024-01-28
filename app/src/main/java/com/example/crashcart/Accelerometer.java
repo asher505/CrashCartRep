@@ -114,8 +114,8 @@ public class Accelerometer implements SensorEventListener {
         // values [0] – sensor values for y axis
         float bX = 0;
         float bY = 0;
-        tempX = bX + (values[1] * ((System.currentTimeMillis() - lastTime) / 1000));
-        tempY = bY + (values[0] * ((System.currentTimeMillis() - lastTime) / 1000));
+       // tempX = bX + (values[1] * ((System.currentTimeMillis() - lastTime) / 1000));
+       // tempY = bY + (values[0] * ((System.currentTimeMillis() - lastTime) / 1000));
        // Log.d(TAG, "SensorMove X: " + tempX);
         //Log.d(TAG, "SensorMove Y: " + tempY);
     }

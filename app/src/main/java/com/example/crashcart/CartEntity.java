@@ -2,6 +2,8 @@ package com.example.crashcart;
 
 import static android.app.ProgressDialog.show;
 
+import static com.example.crashcart.CoinEntity.coins;
+
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.Log;
@@ -97,6 +99,7 @@ public class CartEntity extends Accelerometer implements EntityBase, Collidable 
     @Override
     public void Update(float _dt) {
 
+        int multiplier =  Math.round(6 - accelerometer.Instance.GetTilt()) / 2;
 
         if (GameSystem.Instance.GetIsPaused())
             return;
@@ -106,12 +109,12 @@ public class CartEntity extends Accelerometer implements EntityBase, Collidable 
             SetIsDone(true);
         }
 
-        score += _dt / 4;
-        roundedScore = Math.round(CartEntity.score * 10 * ((5 - accelerometer.Instance.GetTilt()) / 2));
+        score += multiplier * _dt / 4;
+        roundedScore = Math.round(CartEntity.score * 10);
         spritesheet.Update(_dt);
         accelerometer.Update(_dt);
 
-        Log.d(TAG, "accc: " + accelerometer.values[1]);
+        Log.d(TAG, "accc: " + multiplier);
 
         // Define the number of rows and columns
         int numRows = 3;
