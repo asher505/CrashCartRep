@@ -1,11 +1,9 @@
 package com.example.crashcart;
 
-import static com.example.crashcart.CoinEntity.coins;
-
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -23,28 +21,55 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
     //back button, when press wil go back to splashpage (for now)
 
     //define buttons. buttons are objects.
-
+    //public static final String COIN_KEY= "Coins";
     private ImageButton btn_start; //int a
 
+    public static final String COIN_KEY= "Coins";
+
+    SharedPreferences sharedPref = null;
     private ImageButton btn_shop; //int a
     private ImageButton btn_lead; //int a
 
+    Bundle SaveInstance;
     static Paint paint = new Paint();
     private Button btn_back;
     protected Typeface myfont;
 
-    private TextView coinText;
+    public static TextView coinText;
     private int red = 0, green = 0, blue = 0;
-    private int coinValue;
+    public static int coinValue;
 
+    private static final String TAG ="cointest ";
     @Override
     protected void onCreate(Bundle SaveInstanceState){
         super.onCreate(SaveInstanceState);
 
 
-        int coinValue;
 
+        //sharedPref = GamePage.Instance.getSharedPreferences(COIN_KEY, 0);
+
+        //SaveInstance = SaveInstanceState;
+            //if (coinValue != null) {
+
+        //}
+        //coinValue = GameSystem.Instance.GetIntFromSave("Coins");
         setContentView(R.layout.mainmenu);
+        coinText = (TextView) findViewById(R.id.coinText);
+        coinText.setText("Coins: " + coinValue);
+
+        if (coinText == null)
+        {
+            Log.d(TAG, "oncreate coinText is NULL: ");
+        }
+        else
+        {
+            Log.d(TAG, "oncreate coinText is NOT NULL: ");
+        }
+
+
+//        coinText = (TextView) findViewById(R.id.coinText);
+//        coinText.setText("Coins: " + coinValue);
+
         //not sure if i need this to swicth to shop
         //setContentView(R.layout.shoppage);
 
@@ -71,11 +96,24 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
 
         StateManager.Instance.AddState(new Mainmenu());
 
-        RenderTextEntity.Create();
+
+
 //        //not sure if i need this to swicth to shop
 //        StateManager.Instance.AddState(new ShopPage());
     }
 
+    private void updateCoinText(int coinValue) {
+
+
+        if (coinText != null) {
+            coinText.setText("Coins : " + coinValue);
+
+            Log.d(TAG, "UPDATED COIN VALUE: " + coinValue );
+        }
+        else {
+            Log.d(TAG, "coinText is NULL: ");
+        }
+    }
     @Override
     //Invoke a callback method event in the view
     public void onClick(View v){
@@ -137,19 +175,21 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
 
     @Override
     public void OnEnter(SurfaceView _view) {
-
         coinValue = GameSystem.Instance.GetIntFromSave("Coins");
+        updateCoinText(coinValue);
         myfont = Typeface.createFromAsset(_view.getContext().getAssets(), "fruitstarfont.ttf");
-        Log.d(TAG, "ON ENER==TEr: " );
-
     }
+
+
+
+
 
     @Override
     public void OnExit() {
 
     }
 
-    private static final String TAG ="MainMenu ";
+
     @Override
     public void Render(Canvas _canvas) {
 
@@ -161,11 +201,15 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
         _canvas.drawText(String.valueOf(coinValue), 10, 220, paint);
         _canvas.drawText("Coins: " + CoinEntity.coins, 30, 340, paint);
 
-        Log.d(TAG, "COINS MAINMENU: " + coinValue);
+        //Log.d(TAG, "COINS MAINMENU: " + coinValue);
     }
 
     @Override
     public void Update(float _dt) {
+
+
+
+        //Log.d(TAG, "UPDATED VALUE: " + coinValue );
 
     }
 }

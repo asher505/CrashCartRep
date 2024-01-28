@@ -2,11 +2,15 @@ package com.example.crashcart;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.util.Log;
 import android.view.SurfaceView;
+
+import androidx.fragment.app.FragmentActivity;
 
 // Created by TanSiewLan2023
 
-public class GameSystem {
+public class GameSystem extends FragmentActivity {
     public final static GameSystem Instance = new GameSystem();
     public static final String SHARED_PREF_ID = "GameSaveFile";
     public static final String COIN_KEY= "Coins";
@@ -16,17 +20,29 @@ public class GameSystem {
     SharedPreferences.Editor editor = null;
     private boolean isPaused = false;
 
+    private static final String TAG ="GAMESYSTEM ";
+
     // Singleton Pattern : Blocks others from creating
     private GameSystem()
     {
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+        Log.d(TAG, "GAMESYSTEM CREATED: ");
+
+        setContentView(new GameView(this)); // Surfaceview = GameView
+    }
     public void Update(float _deltaTime)
     {
     }
 
     public void Init(SurfaceView _view)
     {
+        Log.d(TAG, "GAMESYSTEM CREATED: ");
         sharedPref = GamePage.Instance.getSharedPreferences(SHARED_PREF_ID, 0);
         sharedPref = GamePage.Instance.getSharedPreferences(COIN_KEY, 0);
         // 2. We will add all of our states into the state manager here!

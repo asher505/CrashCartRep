@@ -5,6 +5,7 @@ package com.example.crashcart;
 // StateManager to deal with which state is current or next.
 
 import android.graphics.Canvas;
+import android.os.Bundle;
 import android.view.SurfaceView;
 
 import java.util.HashMap;
@@ -55,6 +56,7 @@ public class StateManager {
 
     void Update(float _dt)
     {
+
         if (nextState != currState)
         {
             // We need to change state

@@ -6,6 +6,7 @@ package com.example.crashcart;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.SurfaceHolder;
 
 public class UpdateThread extends Thread {
@@ -68,6 +69,8 @@ public class UpdateThread extends Thread {
             prevTime = currTime;
 
             // Update
+
+
             StateManager.Instance.Update(deltaTime);
 
             // Render
