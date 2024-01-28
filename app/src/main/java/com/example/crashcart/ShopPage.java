@@ -19,9 +19,16 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
 
     protected Typeface myfont;
 
+    public static int selectedCartType = 1; // Initialize to an invalid value
+    public static final int DEFAULT_CART_TYPE = 1;
+    public static final int BLUE_CART_TYPE = 2;
+    public static final int CAT_CART_TYPE = 3;
     private static final String TAG ="shoppagetag ";
     private Button btn_back;
-    private Button btn_buy;
+    private ImageButton btn_blue;
+    private ImageButton btn_cat;
+
+    private Button btn_use;
 
     public static TextView coinText;
 
@@ -53,9 +60,13 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
 
 
         btn_back = (Button) findViewById(R.id.btn_back);
-        btn_buy = (Button) findViewById(R.id.btn_buy);
         btn_back.setOnClickListener(this);
-        btn_buy.setOnClickListener(this);
+        btn_blue = (ImageButton) findViewById(R.id.BlueCart);
+        btn_blue.setOnClickListener(this);
+        btn_cat = (ImageButton) findViewById(R.id.BlueCart);
+        btn_cat.setOnClickListener(this);
+        btn_use = (Button) findViewById(R.id.btn_use);
+        btn_use.setOnClickListener(this);
         // this allows the correct button to be assigned to the object name and
         // for this case button
         // setonclicklistener to the specified button so that we know
@@ -90,19 +101,69 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
              startActivity(intent);
         }
 
-        if (v == btn_buy){
+        if (v == btn_blue){
             coinValue = GameSystem.Instance.GetIntFromSave("Coins");
-            if(coinValue >= 2)
+
+            int bluecheck;
+            bluecheck = GameSystem.Instance.GetIntFromSave("BlueCart");
+
+            if(coinValue >= 2 && bluecheck == 0)
             {
                 coinValue = coinValue - 2;
 
                 updateCoinText(coinValue);
                 GameSystem.Instance.SetIntInSave("Coins", coinValue);
-
+                GameSystem.Instance.SetIntInSave("BlueCart", 1);
                 Log.d(TAG, "Coins after buy: "+ coinValue);
+
+
+               // CartEntity.cartBLUE = true;
             }
+            if(bluecheck == 1)
+            {
+                selectedCartType = BLUE_CART_TYPE;
+                Log.d(TAG, " selectedCartType : " +  selectedCartType);
+            }
+            //BE ABLE TO SELECT WHAT CART
+        }
+
+        if (v == btn_cat){
+            coinValue = GameSystem.Instance.GetIntFromSave("Coins");
+
+            int catcheck;
+            catcheck = GameSystem.Instance.GetIntFromSave("CatCart");
+
+            if(coinValue >= 10 && catcheck == 0)
+            {
+                coinValue = coinValue - 10;
+
+                updateCoinText(coinValue);
+                GameSystem.Instance.SetIntInSave("Coins", coinValue);
+                GameSystem.Instance.SetIntInSave("CatCart", 1);
+                Log.d(TAG, "Coins after buy: "+ coinValue);
+
+
+                selectedCartType = CAT_CART_TYPE;
+                Log.d(TAG, " selectedCartType : " +  selectedCartType);
+                // CartEntity.cartBLUE = true;
+            }
+            if(catcheck == 1)
+            {
+                selectedCartType = CAT_CART_TYPE;
+                Log.d(TAG, " selectedCartType : " +  selectedCartType);
+            }
+            //BE ABLE TO SELECT WHAT CART
+        }
+
+        if(v == btn_use)
+        {
+            Log.d(TAG, " cartNUM : " +  CartEntity.cartNUM );
+
+            CartEntity.cartNUM = selectedCartType;
 
         }
+
+
 
 //        // exit button
 //        else if (v == btn_quit){

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/cc_shop"
@@ -7,27 +8,27 @@
 
     <Button
         android:id="@+id/btn_back"
-        android:layout_width="154dp"
-        android:layout_height="86dp"
+        android:layout_width="90dp"
+        android:layout_height="63dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="22dp"
         android:layout_marginRight="7dp"
         android:background="@drawable/button"
         android:text="Back"
         android:textColor="#C9BDFC"
         android:textSize="18dp" />
 
+
     <Button
-        android:id="@+id/btn_buy"
-        android:layout_width="172dp"
-        android:layout_height="36dp"
+        android:id="@+id/btn_use"
+        android:layout_width="218dp"
+        android:layout_height="80dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="566dp"
-        android:layout_marginRight="161dp"
+        android:layout_marginTop="635dp"
+        android:layout_marginRight="98dp"
         android:background="@drawable/button"
-        android:text="BUY"
         android:textColor="#C9BDFC"
         android:textSize="18dp" />
 
@@ -44,5 +45,34 @@
         android:text="placeholder"
         android:textSize="48sp" />
 
+    <ImageButton
+        android:id="@+id/BlueCart"
+        android:layout_width="127dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="489dp"
+        android:layout_marginRight="143dp"
+        app:srcCompat="@drawable/bluecart" />
+
+    <ImageButton
+        android:id="@+id/Cart"
+        android:layout_width="127dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="490dp"
+        android:layout_marginRight="276dp"
+        app:srcCompat="@drawable/cart" />
+
+    <ImageButton
+        android:id="@+id/CatCart"
+        android:layout_width="127dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="490dp"
+        android:layout_marginRight="9dp"
+        app:srcCompat="@drawable/catcart" />
 
 </RelativeLayout>

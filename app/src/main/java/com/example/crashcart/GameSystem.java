@@ -23,6 +23,9 @@ public class GameSystem extends FragmentActivity {
     public final static GameSystem Instance = new GameSystem();
     public static final String SHARED_PREF_ID = "GameSaveFile";
     public static final String COIN_KEY= "Coins";
+
+    public static final String CARTCAT = "CatCart";
+    public static final String CARTBLUE = "BlueCart";
     // Game stuff
     private boolean isPause = false;
     SharedPreferences sharedPref = null;
@@ -54,6 +57,9 @@ public class GameSystem extends FragmentActivity {
         Log.d(TAG, "GAMESYSTEM CREATED: ");
         sharedPref = GamePage.Instance.getSharedPreferences(SHARED_PREF_ID, 0);
         sharedPref = GamePage.Instance.getSharedPreferences(COIN_KEY, 0);
+        sharedPref = GamePage.Instance.getSharedPreferences(CARTBLUE, 0);
+        sharedPref = GamePage.Instance.getSharedPreferences(CARTCAT, 0);
+
         // 2. We will add all of our states into the state manager here!
         StateManager.Instance.AddState(new Mainmenu());
 

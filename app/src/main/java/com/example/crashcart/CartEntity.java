@@ -22,6 +22,9 @@ public class CartEntity extends Accelerometer implements EntityBase, Collidable 
     private static final String TAG ="cart ";
 
 
+    public static int cartNUM = 1;
+
+    public static boolean cartBLUE;
 
 	 // 1. Declare the use of spritesheet using Sprite class.
      private Sprite spritesheet = null;
@@ -63,7 +66,31 @@ public class CartEntity extends Accelerometer implements EntityBase, Collidable 
     public void Init(SurfaceView _view) {
         // New method using our own resource manager : Returns pre-loaded one if exists
         // 2. Loading spritesheet
-        spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.minecart_sprite), 1, 4, 4);
+
+
+        cartNUM = ShopPage.selectedCartType;
+        Log.d(TAG, " cartNUM : " + cartNUM );
+
+        //spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.minecart_sprite), 1, 4, 4);
+        switch (cartNUM) {
+            case 1:
+                spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.minecart_sprite), 1, 4, 4);
+                Log.d(TAG, "MINECART 1: " );
+                break;
+            case 2:
+                spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.minecart_blue_sprite), 1, 4, 4);
+                Log.d(TAG, "MINECART 2: " );
+                break;
+            case 3:
+                spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.minecart_cat_sprite), 1, 4, 4);
+                Log.d(TAG, "MINECART 3: " );
+                break;
+
+            default:
+
+                break;
+        }
+
 
 
         // 3. Get some random position of x and y
