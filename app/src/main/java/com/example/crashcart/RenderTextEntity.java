@@ -83,13 +83,6 @@ public class RenderTextEntity implements EntityBase {
         paint.setTextSize(80);
 
         _canvas.drawText("Score: " + CartEntity.roundedScore, 30, 160, paint);
-
-
-        String scoreText = String.format("High Score: %d", GameSystem.Instance.GetIntFromSave("Score"));
-        paint.setColor(Color.BLACK);
-        paint.setTextSize(64);
-
-        _canvas.drawText(scoreText, 10, 220, paint);
     }
 
     @Override

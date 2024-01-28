@@ -20,7 +20,6 @@ public class LeadPage extends Activity implements OnClickListener, StateBase {
     @Override
     protected void onCreate(Bundle SaveInstanceState){
         super.onCreate(SaveInstanceState);
-        Log.d("arghhhhh", "test");
         setContentView(R.layout.leadpage);
         //NEVER import R *
         //when android studio tells you to import R, DO NOT do it
@@ -38,7 +37,8 @@ public class LeadPage extends Activity implements OnClickListener, StateBase {
 
         StateManager.Instance.AddState(new ShopPage());
 
-        scoreText.setText("Score: " + Integer.toString(GameSystem.Instance.GetIntFromSave("Score")));
+        //scoreText.setText("Score: " + Integer.toString(GameSystem.Instance.getPlayerScore("asher")));
+        scoreText.setText(GameSystem.Instance.getLeaderboard());
     }
 
     @Override

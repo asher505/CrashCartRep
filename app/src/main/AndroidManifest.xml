@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
     <!-- commenting -->
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.hardware.sensor.accelerometer" />
 
     <application
@@ -75,6 +76,33 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+        <meta-data android:name="com.facebook.sdk.ApplicationId"
+            android:value="227522383753330"/>
+
+        <meta-data android:name="com.facebook.sdk.ClientToken"
+            android:value="f7a324542ca49858aebab9446bd532c8"/>
+
+        <activity android:name="com.facebook.FacebookActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="MGP 2023"/>
+
+
+        <provider
+            android:authorities = "com.facebook.app.FacebookContentProvider866609697956947"
+            android:name="com.facebook.FacebookContentProvider"
+            android:exported="true"/>
+
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW"/>
+            <category android:name="android.intent.action.DEFAULT"/>
+            <category android:name="android.intent.action.BROWSABLE"/>
+            <data android:scheme="fb866609697956947" />
+        </intent-filter>
         </activity>
     </application>
 

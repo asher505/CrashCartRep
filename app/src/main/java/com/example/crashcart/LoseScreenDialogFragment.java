@@ -10,6 +10,8 @@ import android.widget.EditText;
 
 import androidx.fragment.app.DialogFragment;
 
+import kotlin.random.URandomKt;
+
 public class LoseScreenDialogFragment extends DialogFragment {
     // To use this to check if the dialog button is pressed
     public static boolean IsShown = false;
@@ -41,9 +43,14 @@ public class LoseScreenDialogFragment extends DialogFragment {
             public void onClick(DialogInterface dialog, int which) {
                 StateManager.Instance.ChangeState("Mainmenu"); // Press Start button
                 m_Text = input.getText().toString();
-                if (m_Text == "")
-                    m_Text = "Anon";
-                //GameSystem.Instance.SetIntInSave(m_Text, CartEntity.roundedScore);
+
+                if (m_Text.isEmpty()) {
+                    m_Text = "Guest";
+                }
+
+                // save player data
+                GameSystem.Instance.savePlayerData(m_Text, CartEntity.roundedScore);
+
                 // We will define what to do when +ve button is pressed
                 // To pause if press YES.
                 // Gamesystem have written 2 methods to check if pause.

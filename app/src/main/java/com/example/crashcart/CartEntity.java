@@ -44,24 +44,8 @@ public class CartEntity extends Accelerometer implements EntityBase, Collidable 
     @Override
     public void SetIsDone(boolean _isDone) {
         Log.d("hey", "new: " + Integer.toString(roundedScore));
-        Log.d("hey", "old: " + Integer.toString(GameSystem.Instance.GetIntFromSave("Score")));
-        if (roundedScore > GameSystem.Instance.GetIntFromSave("Score"));
-        {
-            Log.d("hey", "new highscore");
-            GameSystem.Instance.SaveEditBegin();
-//        if (roundedScore > GameSystem.Instance.GetIntFromSave("hs1"))
-//            GameSystem.Instance.SetIntInSave("hs1", roundedScore);
-//        else if (roundedScore > GameSystem.Instance.GetIntFromSave("hs2"))
-//            GameSystem.Instance.SetIntInSave("hs2",roundedScore);
-//        else if (roundedScore > GameSystem.Instance.GetIntFromSave("hs3"))
-//            GameSystem.Instance.SetIntInSave("hs3",roundedScore);
-//        else if (roundedScore > GameSystem.Instance.GetIntFromSave("hs4"))
-//            GameSystem.Instance.SetIntInSave("hs4",roundedScore);
-//        else if (roundedScore > GameSystem.Instance.GetIntFromSave("hs5"))
-//            GameSystem.Instance.SetIntInSave("hs5",roundedScore);
-            GameSystem.Instance.SetIntInSave("Score", roundedScore);
-            GameSystem.Instance.SaveEditEnd();
-        }
+        //Log.d("hey", "old: " + Integer.toString(GameSystem.Instance.GetIntFromSave("Score")));
+
         LoseScreenDialogFragment newLose = new LoseScreenDialogFragment();
         newLose.show(GamePage.Instance.getSupportFragmentManager(), "LoseScreen");
 

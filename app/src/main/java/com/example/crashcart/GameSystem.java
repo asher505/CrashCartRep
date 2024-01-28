@@ -2,7 +2,15 @@ package com.example.crashcart;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.SurfaceView;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 // Created by TanSiewLan2023
 
@@ -14,6 +22,7 @@ public class GameSystem {
     SharedPreferences sharedPref = null;
     SharedPreferences.Editor editor = null;
     private boolean isPaused = false;
+
 
     // Singleton Pattern : Blocks others from creating
     private GameSystem()
@@ -36,9 +45,11 @@ public class GameSystem {
 			// Plese add state, MainGameSceneState.
         StateManager.Instance.AddState(new MainGameSceneState());
         StateManager.Instance.AddState(new ShopPage());
+
     }
 
-    public void SaveEditBegin()
+    // asher
+    private void SaveEditBegin()
     {
         if (editor != null)
             return;
@@ -46,7 +57,7 @@ public class GameSystem {
         editor = sharedPref.edit();
     }
 
-    public void SaveEditEnd()
+    private void SaveEditEnd()
     {
         if(editor == null)
             return;
@@ -55,16 +66,91 @@ public class GameSystem {
         editor = null;
     }
 
-    public void SetIntInSave(String _key, int _value)
-    {
-        if(editor == null)
-            return;
-        editor.putInt(_key,_value);
+    public void savePlayerData(String playerName, int playerScore) {
+        String existingData = sharedPref.getString("playerData", "");
+        boolean exists = false;
+        // parse the existing player data into a map
+        Map<String, Integer> playerScores = new HashMap<>();
+        String[] players = existingData.split(";");
+        for (String player : players) {
+            String[] playerInfo = player.split(",");
+            if (playerInfo.length == 2)
+            {
+                playerScores.put(playerInfo[0], Integer.parseInt(playerInfo[1]));
+                if (playerName.equals(playerInfo[0]))
+                {
+                    exists = true;
+                    if (playerScore > Integer.parseInt(playerInfo[1])) {
+                        playerScores.put(playerName, playerScore);
+                    }
+                }
+            }
+        }
+
+        if (!exists) {
+            // player doesnt exist, add a new player
+            playerScores.put(playerName, playerScore);
+        }
+        SaveEditBegin();
+        editor.putString("playerData", FormatMapToString(playerScores));
+        SaveEditEnd();
     }
 
-    public int GetIntFromSave(String _key)
-    {
-        return sharedPref.getInt(_key, 0);
+
+    private String FormatMapToString(Map<String, Integer> playerScores) {
+        StringBuilder result = new StringBuilder();
+        for (Map.Entry<String, Integer> entry : playerScores.entrySet()) {
+            result.append(entry.getKey()).append(",").append(entry.getValue()).append(";");
+        }
+        Log.d("dawg", result.toString());
+        return result.toString();
+    }
+
+    public int getPlayerScore(String playerName) {
+        String allPlayerData = sharedPref.getString("playerData", "");
+
+        String[] players = allPlayerData.split(";");
+        for (String player : players) {
+            String[] playerData = player.split(",");
+            if (playerData.length == 2 && playerData[0].equals(playerName)) {
+                // player found, return the score
+                return Integer.parseInt(playerData[1]);
+            }
+        }
+        // player not found
+        return -1;
+    }
+
+    public String getLeaderboard() {
+        String allPlayerData = sharedPref.getString("playerData", "");
+
+        // parse the existing player data into a map
+        Map<String, Integer> playerScores = new HashMap<>();
+        String[] players = allPlayerData.split(";");
+        for (String player : players) {
+            String[] playerData = player.split(",");
+            if (playerData.length == 2) {
+                playerScores.put(playerData[0], Integer.parseInt(playerData[1]));
+            }
+        }
+
+        // create player list
+        List<Map.Entry<String, Integer>> playerList = new ArrayList<>(playerScores.entrySet());
+
+        // sort list by the value
+        Collections.sort(playerList, Collections.reverseOrder(Map.Entry.comparingByValue()));
+
+        // format string to display
+        StringBuilder leaderboard = new StringBuilder();
+        int rank = 1;
+        for (Map.Entry<String, Integer> player : playerList) {
+            leaderboard.append(rank).append(". ").append(player.getKey()).append(" ").append(player.getValue()).append("\n");
+            rank++;
+            if (rank > 5)
+                break;
+        }
+
+        return leaderboard.toString();
     }
 
     public void SetIsPaused(boolean _newIsPaused)
