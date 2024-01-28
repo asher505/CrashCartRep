@@ -66,7 +66,7 @@ public class GameSystem extends FragmentActivity {
 
     }
 
-    // asher
+    // ============asher
     private void SaveEditBegin()
     {
         if (editor != null)
@@ -180,6 +180,24 @@ public class GameSystem extends FragmentActivity {
     {
         return isPaused;
     }
+
+    // =============asher
+
+    // =============ethan
+    public void SetIntInSave(String _key, int _value)
+    {
+        SaveEditBegin();
+        if(editor == null)
+            return;
+        editor.putInt(_key,_value);
+        SaveEditEnd();
+    }
+
+    public int GetIntFromSave(String _key)
+    {
+        return sharedPref.getInt(_key, 0);
+    }
+    // ============ethan
 
 //    public void SaveCoins(int coins) {
 //        SharedPreferences.Editor editor = sharedPref.edit();

@@ -160,9 +160,7 @@ public class CoinEntity implements EntityBase, Collidable{
             if (_other.GetType() == "CartEntity")
             {
                 ++coins;
-                GameSystem.Instance.SaveEditBegin();
                 GameSystem.Instance.SetIntInSave("Coins", coins);
-                GameSystem.Instance.SaveEditEnd();
                 int retrievedCoins = GameSystem.Instance.GetIntFromSave("Coins");
                 Log.d(TAG, "COINS: " + retrievedCoins);
             }

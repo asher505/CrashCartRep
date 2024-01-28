@@ -97,9 +97,7 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
                 coinValue = coinValue - 2;
 
                 updateCoinText(coinValue);
-                GameSystem.Instance.SaveEditBegin();
                 GameSystem.Instance.SetIntInSave("Coins", coinValue);
-                GameSystem.Instance.SaveEditEnd();
 
                 Log.d(TAG, "Coins after buy: "+ coinValue);
             }

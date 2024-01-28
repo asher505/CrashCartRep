@@ -83,7 +83,7 @@ public class RenderTextEntity implements EntityBase {
 
         _canvas.drawText("Score: " + CartEntity.roundedScore, 30, 160, paint);
 
-        _canvas.drawText("Coins: " + CoinEntity.coins, 30, 340, paint);
+        _canvas.drawText("Coins: " + CoinEntity.coins, 30, 240, paint);
     }
 
     @Override
