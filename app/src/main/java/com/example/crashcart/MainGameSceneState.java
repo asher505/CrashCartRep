@@ -28,7 +28,7 @@ public class MainGameSceneState implements StateBase {
     @Override
     public void OnEnter(SurfaceView _view)
     {
-        CoinEntity.coins = GameSystem.Instance.GetIntFromSave("Coins");
+        CartEntity.coinValue = GameSystem.Instance.GetIntFromSave("Coins");
         //Log.d("yuh", "volume: " + (int)(GameSystem.Instance.GetFloatFromSave("Music")));
         //GameSystem.Instance.SetFloatInSave("Music", 0);
         AudioManager.Instance.PlayLoopAudio(R.raw.bgm, GameSystem.Instance.GetFloatFromSave("Music"));

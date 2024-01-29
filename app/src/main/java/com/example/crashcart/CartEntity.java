@@ -2,7 +2,7 @@ package com.example.crashcart;
 
 import static android.app.ProgressDialog.show;
 
-import static com.example.crashcart.CoinEntity.coins;
+//import static com.example.crashcart.CoinEntity.coinValue;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -16,19 +16,22 @@ public class CartEntity extends Accelerometer implements EntityBase, Collidable 
 
     public static float score;
     public static int roundedScore;
+    public static int roundedDist;
     private static TouchManager touchManager;
     private static Accelerometer accelerometer;
     private static Context context;
     private static final String TAG ="cartentity tag";
 
-
+    public static int coinValue;
     public static int cartNUM;
 
+    public boolean rewardGIVEN = true;
     public static boolean cartBLUE;
 
 	 // 1. Declare the use of spritesheet using Sprite class.
      private Sprite spritesheet = null;
 
+    public static float DistBonus;
     private static int minSwipeDist = 50; // min dist to count a swipe
     private boolean isDone = false;
     private boolean isInit = false;
@@ -54,6 +57,7 @@ public class CartEntity extends Accelerometer implements EntityBase, Collidable 
         LoseScreenDialogFragment newLose = new LoseScreenDialogFragment();
         newLose.show(GamePage.Instance.getSupportFragmentManager(), "LoseScreen");
 
+        DistBonus = 0;
         isDone = _isDone;
     }
     public CartEntity(TouchManager touchManager, Context context, Accelerometer accelerometer) {
@@ -145,11 +149,29 @@ public class CartEntity extends Accelerometer implements EntityBase, Collidable 
         }
 
         score += multiplier * _dt / 4;
+        DistBonus += multiplier * _dt / 4 ;
+
+
+        roundedDist = Math.round(CartEntity.DistBonus * 10);
+        Log.d(TAG, "distance bounus" + roundedDist);
         roundedScore = Math.round(CartEntity.score * 10);
         spritesheet.Update(_dt);
         accelerometer.Update(_dt);
 
         Log.d(TAG, "accc: " + multiplier);
+
+
+
+        if (roundedDist == 49)
+        {
+            rewardGIVEN = false;
+        }
+        else if (rewardGIVEN == false)
+        {
+            DistBonus = 0;
+            DistanceReward();
+
+        }
 
         // Define the number of rows and columns
         int numRows = 3;
@@ -261,6 +283,17 @@ public class CartEntity extends Accelerometer implements EntityBase, Collidable 
                 //bottommost position cart can be at is (2200 - numRows * YgridStep)
             }
        // }
+    }
+
+    public void DistanceReward()
+    {
+        coinValue = GameSystem.Instance.GetIntFromSave("Coins");
+        Log.d(TAG, "cooins before" + coinValue);
+        coinValue = coinValue + 10;
+        Log.d(TAG, "cooins after" + coinValue);
+        GameSystem.Instance.SetIntInSave("Coins", coinValue);
+        Log.d(TAG, "REWARD GIVEN" + coinValue);
+        rewardGIVEN = true;
     }
 
 

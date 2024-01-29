@@ -16,7 +16,7 @@ public class CoinEntity implements EntityBase, Collidable{
 
     public final static CoinEntity Instance = new CoinEntity();
 
-    public static int coins;
+    //public static int coinValue;
 
     private static final String TAG ="Coin ";
 
@@ -159,8 +159,8 @@ public class CoinEntity implements EntityBase, Collidable{
         {
             if (_other.GetType() == "CartEntity")
             {
-                ++coins;
-                GameSystem.Instance.SetIntInSave("Coins", coins);
+                ++CartEntity.coinValue;
+                GameSystem.Instance.SetIntInSave("Coins", CartEntity.coinValue);
                 int retrievedCoins = GameSystem.Instance.GetIntFromSave("Coins");
                 Log.d(TAG, "COINS: " + retrievedCoins);
             }

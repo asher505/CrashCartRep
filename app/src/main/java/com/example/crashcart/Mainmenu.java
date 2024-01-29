@@ -139,6 +139,7 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
 
 
 
+
         //sharedPref = GamePage.Instance.getSharedPreferences(COIN_KEY, 0);
 
         //SaveInstance = SaveInstanceState;
@@ -355,7 +356,7 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
         paint.setTextSize(50);
 
         _canvas.drawText(String.valueOf(coinValue), 10, 220, paint);
-        _canvas.drawText("Coins: " + CoinEntity.coins, 30, 340, paint);
+        _canvas.drawText("Coins: " + CartEntity.coinValue, 30, 340, paint);
 
         //Log.d(TAG, "COINS MAINMENU: " + coinValue);
     }
