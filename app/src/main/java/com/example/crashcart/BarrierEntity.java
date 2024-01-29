@@ -151,7 +151,7 @@ public class BarrierEntity implements EntityBase, Collidable{
     public void OnHit(Collidable _other) {
         if (_other.GetType() == "BoulderEntity")
         {
-            AudioManager.Instance.PlayAudio(R.raw.bouldersfx, 1f);
+            AudioManager.Instance.PlayAudio(R.raw.bouldersfx, GameSystem.Instance.GetFloatFromSave("SFX"));
             SetIsDone(true);
             //Play an audio
         }

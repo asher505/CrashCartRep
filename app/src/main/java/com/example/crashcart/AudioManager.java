@@ -28,11 +28,13 @@ public class AudioManager {
         {
             // have the clip
             MediaPlayer curr = audioMap.get(_id);
+            curr.setVolume(_volume, _volume);
             curr.start();
         }
         else {
             MediaPlayer curr = MediaPlayer.create(view.getContext(), _id);
             audioMap.put(_id, curr);
+            curr.setVolume(_volume, _volume);
             curr.start();
         }
     }
@@ -45,11 +47,13 @@ public class AudioManager {
             // have the clip
             MediaPlayer curr = audioMap.get(_id);
             curr.setLooping(true);
+            curr.setVolume(_volume, _volume);
             curr.start();
         }
         else {
             MediaPlayer curr = MediaPlayer.create(view.getContext(), _id);
             audioMap.put(_id, curr);
+            curr.setVolume(_volume, _volume);
             curr.setLooping(true);
             curr.start();
         }

@@ -3,6 +3,7 @@ package com.example.crashcart;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.SurfaceView;
 
 import kotlin.random.Random;
@@ -28,7 +29,9 @@ public class MainGameSceneState implements StateBase {
     public void OnEnter(SurfaceView _view)
     {
         CoinEntity.coins = GameSystem.Instance.GetIntFromSave("Coins");
-        AudioManager.Instance.PlayLoopAudio(R.raw.bgm, 1f);
+        //Log.d("yuh", "volume: " + (int)(GameSystem.Instance.GetFloatFromSave("Music")));
+        //GameSystem.Instance.SetFloatInSave("Music", 0);
+        AudioManager.Instance.PlayLoopAudio(R.raw.bgm, GameSystem.Instance.GetFloatFromSave("Music"));
         // 3. Create Background 
         RenderBackground.Create();
         // Example to include another Renderview for Pause Button

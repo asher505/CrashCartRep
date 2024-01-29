@@ -3,6 +3,7 @@ package com.example.crashcart;
 import android.os.Vibrator;
 import android.os.VibrationEffect;
 import android.os.Build;
+import android.util.Log;
 import android.view.SurfaceView;
 
 public class VibrateManager {
@@ -18,11 +19,14 @@ public class VibrateManager {
     }
 
     public void startVibrate(int amplitude) {
-        if (Build.VERSION.SDK_INT >= 26) {
-            _vibrator.vibrate(VibrationEffect.createOneShot(150, 10));
-        } else {
-            long pattern[] = {0, amplitude, 0};
-            _vibrator.vibrate(pattern, -1);
+
+        if (GameSystem.Instance.GetIntFromSave("Vibrate") == 0) {
+            if (Build.VERSION.SDK_INT >= 26) {
+                _vibrator.vibrate(VibrationEffect.createOneShot(150, 10));
+            } else {
+                long pattern[] = {0, amplitude, 0};
+                _vibrator.vibrate(pattern, -1);
+            }
         }
     }
 

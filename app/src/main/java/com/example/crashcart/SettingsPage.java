@@ -1,5 +1,6 @@
 package com.example.crashcart;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
@@ -9,26 +10,88 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 
-public class LeadPage extends Activity implements OnClickListener, StateBase {
+public class SettingsPage extends Activity implements OnClickListener, StateBase {
 
     private ImageButton btn_back;
 
-    private TextView scoreText;
+    private SeekBar musicSlider;
+    private SeekBar sfxSlider;
 
+    private Switch vibrateSwitch;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle SaveInstanceState){
         super.onCreate(SaveInstanceState);
-        setContentView(R.layout.leadpage);
+        setContentView(R.layout.settingspage);
         //NEVER import R *
         //when android studio tells you to import R, DO NOT do it
         //whenm u see this message, it will mean xml has an error.
 
-        scoreText = (TextView) findViewById(R.id.scoreText);
         btn_back = (ImageButton) findViewById(R.id.btn_back);
         btn_back.setOnClickListener(this);
+
+        musicSlider = (SeekBar) findViewById(R.id.musicSlider);
+        musicSlider.setProgress((int)(GameSystem.Instance.GetFloatFromSave("Music") * 100));
+
+        sfxSlider = (SeekBar) findViewById(R.id.sfxSlider);
+        sfxSlider.setProgress((int)(GameSystem.Instance.GetFloatFromSave("SFX") * 100));
+
+        vibrateSwitch = (Switch) findViewById(R.id.vibrateSwitch);
+        if (GameSystem.Instance.GetIntFromSave("Vibrate") == 0)
+            vibrateSwitch.setChecked(true);
+        else if (GameSystem.Instance.GetIntFromSave("Vibrate") == 1)
+            vibrateSwitch.setChecked(false);
+        vibrateSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b)
+                    GameSystem.Instance.SetIntInSave("Vibrate", 0);
+                if (!b)
+                    GameSystem.Instance.SetIntInSave("Vibrate", 1);
+            }
+        });
+        musicSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                GameSystem.Instance.SetFloatInSave("Music",  ((float)i / 100));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        sfxSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener(){
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                GameSystem.Instance.SetFloatInSave("SFX",  ((float)i / 100));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
         // this allows the correct button to be assigned to the object name and
         // for this case button
         // setonclicklistener to the specified button so that we know
@@ -36,10 +99,7 @@ public class LeadPage extends Activity implements OnClickListener, StateBase {
         // it knows what to do
 
 
-        StateManager.Instance.AddState(new ShopPage());
-
-        //scoreText.setText("Score: " + Integer.toString(GameSystem.Instance.getPlayerScore("asher")));
-        scoreText.setText(GameSystem.Instance.getLeaderboard());
+        StateManager.Instance.AddState(new SettingsPage());
     }
 
     @Override
@@ -54,22 +114,11 @@ public class LeadPage extends Activity implements OnClickListener, StateBase {
 
         Intent intent = new Intent();
 
-//        if (v == btn_start){
-//            //intent -> to set to another class which is another page or screen to be launch.
-//            //Equal to change screen
-//            intent.setClass(this,GamePage.class);
-//            StateManager.Instance.ChangeState("MainGame"); // Press Start button
-//            //Goes to the MainGameSceneState hence thats why need to set class to Game
-//        }
         if (v == btn_back){
             intent.setClass(this,Mainmenu.class);
             StateManager.Instance.ChangeState("Mainmenu");
         }
 
-//        // exit button
-//        else if (v == btn_quit){
-//            this.finishAffinity();
-//        }
         startActivity(intent);
     }
 
@@ -85,7 +134,7 @@ public class LeadPage extends Activity implements OnClickListener, StateBase {
 
     @Override
     public String GetName(){ // State name for the Main menu
-        return "LeadPage";
+        return "SettingsPage";
     }
 
     @Override

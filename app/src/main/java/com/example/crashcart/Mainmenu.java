@@ -56,10 +56,12 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
 
     public static final String COIN_KEY= "Coins";
 
-    SharedPreferences sharedPref = null;
+    //SharedPreferences sharedPref = null;
     private ImageButton btn_shop; //int a
     private ImageButton btn_lead; //int a
+    private ImageButton btn_settings; //int a
 
+    //public static Mainmenu Instance = null;
 
     //FACEBOOK
     private CallbackManager callbackManager;
@@ -75,7 +77,7 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
 
     ProfilePictureView profile_pic;
 
-
+    //=========asher
     public void shareScore(){
         Bitmap image = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
 
@@ -111,6 +113,7 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
     private static final String TAG ="cointest ";
     @Override
     protected void onCreate(Bundle SaveInstanceState){
+        //====ethan
         try{
             PackageInfo info = getPackageManager().getPackageInfo(
                     "com.example.crashcart",
@@ -164,56 +167,59 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
         //setContentView(R.layout.shoppage);
 
         // FACEBOOK
-        if(BuildConfig.DEBUG){
-            FacebookSdk.setIsDebugEnabled(true);
-            FacebookSdk.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS);
-        }
-
-        btn_fbLogin = (LoginButton) findViewById(R.id.fb_login_button);
-        btn_fbLogin.setReadPermissions(Arrays.asList(EMAIL));
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"));
-        // FACEBOOK
-
-        profile_pic = findViewById(R.id.picture);
-
-        callbackManager = CallbackManager.Factory.create();
-
-        share_Dialog = new ShareDialog(this);
-
-//        if(ShareDialog.canShow(ShareLinkContent.class)){
-//            ShareLinkContent linkContent - new ShareLinkContent.Builder()
-//                    .setContentUrl(Uri.parse())
+//      // =======asher
+//        if(BuildConfig.DEBUG){
+//            FacebookSdk.setIsDebugEnabled(true);
+//            FacebookSdk.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS);
 //        }
-        share_Dialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>(){
-            @Override
-            public void onSuccess(Sharer.Result result) {
-                shareScore();
-            }
-
-            @Override
-            public void onCancel() {}
-
-            @Override
-            public void onError(FacebookException e){}
-        });
-
-        loginManager = LoginManager.getInstance();
-        loginManager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult){
-                profile_pic.setProfileId(Profile.getCurrentProfile().getId());
-                AccessToken accessToken = AccessToken.getCurrentAccessToken();
-                loginResult.getAccessToken().getUserId();
-            }
-            @Override
-            public void onCancel(){
-                System.out.println("Login attempt cancelled.");
-            }
-            @Override
-            public void onError(FacebookException e){
-                System.out.println("Login attempt failed.");
-            }
-        });
+//
+//        btn_fbLogin = (LoginButton) findViewById(R.id.fb_login_button);
+//        btn_fbLogin.setReadPermissions(Arrays.asList(EMAIL));
+//        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile", "email"));
+//        // FACEBOOK
+//
+//        profile_pic = findViewById(R.id.picture);
+//
+//        callbackManager = CallbackManager.Factory.create();
+//
+//        share_Dialog = new ShareDialog(this);
+//
+////        if(ShareDialog.canShow(ShareLinkContent.class)){
+////            ShareLinkContent linkContent - new ShareLinkContent.Builder()
+////                    .setContentUrl(Uri.parse())
+////        }
+//        share_Dialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>(){
+//            @Override
+//            public void onSuccess(Sharer.Result result) {
+//                shareScore();
+//            }
+//
+//            @Override
+//            public void onCancel() {}
+//
+//            @Override
+//            public void onError(FacebookException e){}
+//        });
+//
+//        //====ethan
+//        loginManager = LoginManager.getInstance();
+//        loginManager.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult){
+//                profile_pic.setProfileId(Profile.getCurrentProfile().getId());
+//                AccessToken accessToken = AccessToken.getCurrentAccessToken();
+//                loginResult.getAccessToken().getUserId();
+//            }
+//            @Override
+//            public void onCancel(){
+//                System.out.println("Login attempt cancelled.");
+//            }
+//            @Override
+//            public void onError(FacebookException e){
+//                System.out.println("Login attempt failed.");
+//            }
+//        });
+        //==========asher
 
 
         //NEVER import R *
@@ -229,6 +235,9 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
         btn_lead = (ImageButton) findViewById(R.id.btn_leaderboard);
         btn_lead.setOnClickListener(this);
 
+        btn_settings = (ImageButton) findViewById(R.id.btn_settings);
+        btn_settings.setOnClickListener(this);
+
         // this allows the correct button to be assigned to the object name and
         // for this case button
         // setonclicklistener to the specified button so that we know
@@ -236,13 +245,15 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
         // it knows what to do
 
         StateManager.Instance.AddState(new Mainmenu());
+        //Instance = this;
+        //GameSystem.Instance.Init(new SurfaceView(this));
+        //StateManager.Instance.Init(new SurfaceView(this));
 
 
 
 //        //not sure if i need this to swicth to shop
 //        StateManager.Instance.AddState(new ShopPage());
     }
-
 
     private void updateCoinText(int coinValue) {
 
@@ -286,6 +297,13 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
             //change GamePage.class to ShopPage
             intent.setClass(this,ShopPage.class);
             StateManager.Instance.ChangeState("ShopPage"); // Press shop button
+
+        }
+        if (v == btn_settings){
+
+            //change GamePage.class to ShopPage
+            intent.setClass(this,SettingsPage.class);
+            StateManager.Instance.ChangeState("SettingsPage"); // Press shop button
 
         }
 

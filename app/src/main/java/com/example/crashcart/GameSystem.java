@@ -208,6 +208,23 @@ public class GameSystem extends FragmentActivity {
     }
     // ============ethan
 
+
+    // ========asher
+    public void SetFloatInSave(String _key, float _value)
+    {
+        SaveEditBegin();
+        if(editor == null)
+            return;
+        editor.putFloat(_key,_value);
+        SaveEditEnd();
+    }
+
+    public float GetFloatFromSave(String _key)
+    {
+        return sharedPref.getFloat(_key, 1f);
+    }
+    // ============asher
+
 //    public void SaveCoins(int coins) {
 //        SharedPreferences.Editor editor = sharedPref.edit();
 //        editor.putInt(COIN_KEY, coins);
