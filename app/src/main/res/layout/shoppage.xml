@@ -35,36 +35,39 @@
 
     <ImageButton
         android:id="@+id/BlueCart"
-        android:layout_width="127dp"
-        android:layout_height="wrap_content"
+        android:layout_width="102dp"
+        android:layout_height="120dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="489dp"
-        android:layout_marginRight="143dp"
-        android:contentDescription="Add blue cart to your items"
-        app:srcCompat="@drawable/bluecart" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="485dp"
+        android:layout_marginRight="155dp"
+        android:background="@drawable/bluecart"
+        android:contentDescription="Add blue cart to your items" />
 
     <ImageButton
         android:id="@+id/Cart"
-        android:layout_width="127dp"
-        android:layout_height="wrap_content"
+        android:layout_width="99dp"
+        android:layout_height="123dp"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="490dp"
-        android:layout_marginRight="276dp"
-        android:contentDescription="default cart"
-        app:srcCompat="@drawable/cart" />
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="483dp"
+        android:layout_marginRight="281dp"
+        android:background="@drawable/cart"
+        android:contentDescription="default cart" />
 
     <ImageButton
         android:id="@+id/CatCart"
-        android:layout_width="127dp"
-        android:layout_height="wrap_content"
+        android:layout_width="98dp"
+        android:layout_height="121dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="490dp"
-        android:layout_marginRight="9dp"
-        android:contentDescription="Add cat cart to your items"
-        app:srcCompat="@drawable/catcart" />
+        android:layout_marginTop="483dp"
+        android:layout_marginRight="22dp"
+        android:background="@drawable/catcart"
+        android:contentDescription="Add cat cart to your items" />
 
     <ImageButton
         android:id="@+id/btn_back"
