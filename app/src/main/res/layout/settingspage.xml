@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cc_settings"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="153dp"
+        android:layout_height="75dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="26dp"
+        android:background="@drawable/cc_back"
+        android:contentDescription="back button" />
+
+    <SeekBar
+        android:id="@+id/musicSlider"
+        android:layout_width="369dp"
+        android:layout_height="119dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="22dp"
+        android:max="100"
+        android:progress="50"
+        android:progressDrawable="@drawable/track"
+        android:thumb="@drawable/minecart_toggle" />
+
+    <SeekBar
+        android:id="@+id/sfxSlider"
+        android:layout_width="369dp"
+        android:layout_height="119dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="242dp"
+        android:layout_marginEnd="22dp"
+        android:max="100"
+        android:progress="50"
+        android:progressDrawable="@drawable/track"
+        android:thumb="@drawable/minecart_toggle" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="326dp"
+        android:layout_height="42dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginTop="239dp"
+        android:fontFamily="@font/font"
+        android:text="Sound Effects Volume"
+        android:textAlignment="center"
+        android:textColor="#1A1A1A"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="226dp"
+        android:layout_height="42dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="95dp"
+        android:layout_marginTop="120dp"
+        android:fontFamily="@font/font"
+        android:text="Music Volume"
+        android:textAlignment="center"
+        android:textColor="#1A1A1A"
+        android:textSize="24sp" />
+
+    <Switch
+        android:id="@+id/vibrateSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="138dp"
+        android:layout_marginBottom="335dp"
+        android:checked="true"
+        android:fontFamily="@font/font"
+        android:scaleX="2"
+        android:scaleY="2"
+        android:showText="false"
+        android:splitTrack="false"
+        android:text="Vibrate"
+        android:textOn="On"
+        android:thumbTint="#2D2F31"
+        android:trackTint="#905F44" />
+
+
+</RelativeLayout>

@@ -316,25 +316,25 @@ public class CartEntity extends Accelerometer implements EntityBase, Collidable 
     public void OnHit(Collidable _other) {
         switch (_other.GetType()) {
             case "BoulderEntity":
-                AudioManager.Instance.PlayAudio(R.raw.bouldersfx, 1f);
+                AudioManager.Instance.PlayAudio(R.raw.bouldersfx, GameSystem.Instance.GetFloatFromSave("SFX"));
                 VibrateManager.Instance.startVibrate(1000);
                 SetIsDone(true);
 
                 break;
             case "ArrowEntity":
-                AudioManager.Instance.PlayAudio(R.raw.arrowsfx, 1f);
+                AudioManager.Instance.PlayAudio(R.raw.arrowsfx, GameSystem.Instance.GetFloatFromSave("SFX"));
                 VibrateManager.Instance.startVibrate(50);
                 //push cart back a square
                 yPos += 255;
                 break;
             case "BarrierEntity":
-                AudioManager.Instance.PlayAudio(R.raw.barriersfx, 1f);
+                AudioManager.Instance.PlayAudio(R.raw.barriersfx, GameSystem.Instance.GetFloatFromSave("SFX"));
                 VibrateManager.Instance.startVibrate(50);
                 //push cart back a square
                 yPos += 255;
                 break;
             case "CoinEntity":
-                AudioManager.Instance.PlayAudio(R.raw.coinsfx, 1f);
+                AudioManager.Instance.PlayAudio(R.raw.coinsfx, GameSystem.Instance.GetFloatFromSave("SFX"));
                 VibrateManager.Instance.startVibrate(20);
                 //push cart back a square
                 break;
