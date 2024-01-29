@@ -24,7 +24,7 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
     public static final int BLUE_CART_TYPE = 2;
     public static final int CAT_CART_TYPE = 3;
     private static final String TAG ="shoppagetag ";
-    private Button btn_back;
+    private ImageButton btn_back;
     private ImageButton btn_blue;
     private ImageButton btn_cat;
 
@@ -64,7 +64,7 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
         //whenm u see this message, it will mean xml has an error.
 
 
-        btn_back = (Button) findViewById(R.id.btn_back);
+        btn_back = (ImageButton) findViewById(R.id.btn_back);
         btn_back.setOnClickListener(this);
         btn_cart = (ImageButton) findViewById(R.id.Cart);
         btn_cart.setOnClickListener(this);
