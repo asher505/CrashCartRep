@@ -33,7 +33,7 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
 
     int catcheck;
     int bluecheck;
-    private Button btn_use;
+    private ImageButton btn_use;
 
     public static TextView coinText;
 
@@ -72,7 +72,7 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
         btn_blue.setOnClickListener(this);
         btn_cat = (ImageButton) findViewById(R.id.CatCart);
         btn_cat.setOnClickListener(this);
-        btn_use = (Button) findViewById(R.id.btn_use);
+        btn_use = (ImageButton) findViewById(R.id.btn_use);
         btn_use.setOnClickListener(this);
         // this allows the correct button to be assigned to the object name and
         // for this case button

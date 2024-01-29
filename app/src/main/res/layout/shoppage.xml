@@ -7,19 +7,6 @@
     android:orientation="vertical">
 
 
-    <Button
-        android:id="@+id/btn_use"
-        android:layout_width="218dp"
-        android:layout_height="80dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="635dp"
-        android:layout_marginRight="98dp"
-        android:background="@drawable/button"
-        android:contentDescription="use button"
-        android:textColor="#C9BDFC"
-        android:textSize="18dp" />
-
     <TextView
         android:id="@+id/coinText"
         android:layout_width="201dp"
@@ -79,5 +66,15 @@
         android:layout_marginEnd="2dp"
         android:background="@drawable/cc_back"
         android:contentDescription="back button" />
+
+    <ImageButton
+        android:id="@+id/btn_use"
+        android:layout_width="206dp"
+        android:layout_height="83dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:background="@drawable/cc_use"
+        android:contentDescription="use button" />
 
 </RelativeLayout>

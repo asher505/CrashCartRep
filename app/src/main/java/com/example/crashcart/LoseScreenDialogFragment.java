@@ -59,15 +59,6 @@ public class LoseScreenDialogFragment extends DialogFragment {
 
             }
         });
-        builder.setNegativeButton("Restart", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //StateManager.Instance.ResetState("MainGame"); // Press Start button
-                // We will define what to do when -ve button is pressed
-                // Do not want to pause.
-                IsShown = false;
-            }
-        });
 
         //Create our customised Dialog popup
         return builder.create();
