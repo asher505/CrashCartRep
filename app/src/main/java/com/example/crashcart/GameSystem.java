@@ -26,6 +26,8 @@ public class GameSystem extends FragmentActivity {
 
     public static final String CARTCAT = "CatCart";
     public static final String CARTBLUE = "BlueCart";
+
+    public static String CHOSENCART = "ChosenCart";
     // Game stuff
     private boolean isPause = false;
     SharedPreferences sharedPref = null;
@@ -59,6 +61,7 @@ public class GameSystem extends FragmentActivity {
         sharedPref = GamePage.Instance.getSharedPreferences(COIN_KEY, 0);
         sharedPref = GamePage.Instance.getSharedPreferences(CARTBLUE, 0);
         sharedPref = GamePage.Instance.getSharedPreferences(CARTCAT, 0);
+        sharedPref = GamePage.Instance.getSharedPreferences(CHOSENCART, 0);
 
         // 2. We will add all of our states into the state manager here!
         StateManager.Instance.AddState(new Mainmenu());

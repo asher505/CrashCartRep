@@ -19,7 +19,7 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
 
     protected Typeface myfont;
 
-    public static int selectedCartType = 1; // Initialize to an invalid value
+    public static int selectedCartType = 1; // Initialize as default
     public static final int DEFAULT_CART_TYPE = 1;
     public static final int BLUE_CART_TYPE = 2;
     public static final int CAT_CART_TYPE = 3;
@@ -30,6 +30,9 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
 
     private ImageButton btn_cart;
 
+
+    int catcheck;
+    int bluecheck;
     private Button btn_use;
 
     public static TextView coinText;
@@ -108,18 +111,47 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
         if (v == btn_cart){
 
                 selectedCartType = DEFAULT_CART_TYPE;
-                Log.d(TAG, " selectedCartType : " +  selectedCartType);
 
+                GameSystem.Instance.SetIntInSave("ChosenCart", selectedCartType);
+                Log.d(TAG, " selectedCartType : " +  selectedCartType);
+                Log.d(TAG, " chosencart : " +  GameSystem.Instance.GetIntFromSave("ChosenCart"));
             //BE ABLE TO SELECT WHAT CART
         }
 
         if (v == btn_blue){
-            coinValue = GameSystem.Instance.GetIntFromSave("Coins");
 
-            int bluecheck;
+            selectedCartType = BLUE_CART_TYPE;
+            Log.d(TAG, " selectedCartType : " +  selectedCartType);
             bluecheck = GameSystem.Instance.GetIntFromSave("BlueCart");
+            if(bluecheck == 1)
+            {
+                //GameSystem.CHOSENCART = String.valueOf(selectedCartType);
+                GameSystem.Instance.SetIntInSave("ChosenCart", selectedCartType);
+                Log.d(TAG, " chosencart : " +  GameSystem.Instance.GetIntFromSave("ChosenCart"));
+            }
+            //BE ABLE TO SELECT WHAT CART
+        }
 
-            if(coinValue >= 2 && bluecheck == 0)
+        if (v == btn_cat){
+            //coinValue = GameSystem.Instance.GetIntFromSave("Coins");
+
+            selectedCartType = CAT_CART_TYPE;
+            Log.d(TAG, " selectedCartType : " +  selectedCartType);
+            catcheck = GameSystem.Instance.GetIntFromSave("CatCart");
+            if(catcheck == 1)
+            {
+                GameSystem.Instance.SetIntInSave("ChosenCart", selectedCartType);
+                Log.d(TAG, " chosencart : " +  GameSystem.Instance.GetIntFromSave("ChosenCart"));
+            }
+            //BE ABLE TO SELECT WHAT CART
+        }
+
+        if(v == btn_use)
+        {
+            //Log.d(TAG, " cartNUM : " +  CartEntity.cartNUM );
+
+            coinValue = GameSystem.Instance.GetIntFromSave("Coins");
+            if(selectedCartType == BLUE_CART_TYPE && coinValue >= 2 && bluecheck == 0)
             {
                 coinValue = coinValue - 2;
 
@@ -129,23 +161,13 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
                 Log.d(TAG, "Coins after buy: "+ coinValue);
 
 
-               // CartEntity.cartBLUE = true;
-            }
-            if(bluecheck == 1)
-            {
                 selectedCartType = BLUE_CART_TYPE;
+                GameSystem.Instance.SetIntInSave("ChosenCart", selectedCartType );
                 Log.d(TAG, " selectedCartType : " +  selectedCartType);
+                // CartEntity.cartBLUE = true;
             }
-            //BE ABLE TO SELECT WHAT CART
-        }
 
-        if (v == btn_cat){
-            coinValue = GameSystem.Instance.GetIntFromSave("Coins");
-
-            int catcheck;
-            catcheck = GameSystem.Instance.GetIntFromSave("CatCart");
-
-            if(coinValue >= 10 && catcheck == 0)
+            if(selectedCartType == CAT_CART_TYPE && coinValue >= 10 && catcheck == 0)
             {
                 coinValue = coinValue - 10;
 
@@ -156,22 +178,13 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
 
 
                 selectedCartType = CAT_CART_TYPE;
+                GameSystem.Instance.SetIntInSave("ChosenCart", selectedCartType );
                 Log.d(TAG, " selectedCartType : " +  selectedCartType);
                 // CartEntity.cartBLUE = true;
             }
-            if(catcheck == 1)
-            {
-                selectedCartType = CAT_CART_TYPE;
-                Log.d(TAG, " selectedCartType : " +  selectedCartType);
-            }
-            //BE ABLE TO SELECT WHAT CART
-        }
 
-        if(v == btn_use)
-        {
-            Log.d(TAG, " cartNUM : " +  CartEntity.cartNUM );
+            //CartEntity.cartNUM = selectedCartType;
 
-            CartEntity.cartNUM = selectedCartType;
 
         }
 
@@ -223,6 +236,7 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
 
     @Override
     public void OnExit() {
+
 
     }
 

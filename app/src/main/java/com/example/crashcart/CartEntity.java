@@ -19,10 +19,10 @@ public class CartEntity extends Accelerometer implements EntityBase, Collidable 
     private static TouchManager touchManager;
     private static Accelerometer accelerometer;
     private static Context context;
-    private static final String TAG ="cart ";
+    private static final String TAG ="cartentity tag";
 
 
-    public static int cartNUM = 1;
+    public static int cartNUM;
 
     public static boolean cartBLUE;
 
@@ -68,7 +68,15 @@ public class CartEntity extends Accelerometer implements EntityBase, Collidable 
         // 2. Loading spritesheet
 
 
-        cartNUM = ShopPage.selectedCartType;
+        //cartNUM = ShopPage.selectedCartType;
+        cartNUM = GameSystem.Instance.GetIntFromSave("ChosenCart");
+        if(cartNUM == 0)
+        {
+            cartNUM = 1;
+        }
+
+        //Log.d(TAG, " chosencart : " + GameSystem.CHOSENCART  );
+
         Log.d(TAG, " cartNUM : " + cartNUM );
 
         //spritesheet = new Sprite(ResourceManager.Instance.GetBitmap(R.drawable.minecart_sprite), 1, 4, 4);
