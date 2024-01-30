@@ -46,6 +46,7 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
         super.onCreate(SaveInstanceState);
 
 
+
         setContentView(R.layout.shoppage);
         coinText = (TextView) findViewById(R.id.coinText);
         coinValue = GameSystem.Instance.GetIntFromSave("Coins");
@@ -85,6 +86,12 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
         // setonclicklistener to the specified button so that we know
         // when the specific button is clicked / touch
         // it knows what to do
+
+        if (GameSystem.Instance.GetIntFromSave("CatCart") == 1)
+            cost10.setVisibility(View.INVISIBLE);
+
+        if (GameSystem.Instance.GetIntFromSave("BlueCart") == 1)
+            cost2.setVisibility(View.INVISIBLE);
 
         StateManager.Instance.AddState(new ShopPage());
     }
@@ -161,7 +168,7 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
             {
                 coinValue = coinValue - 2;
 
-                cost2.setEnabled(false);
+                cost2.setVisibility(View.INVISIBLE);
                 updateCoinText(coinValue);
                 GameSystem.Instance.SetIntInSave("Coins", coinValue);
                 GameSystem.Instance.SetIntInSave("BlueCart", 1);
@@ -178,7 +185,7 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
             {
                 coinValue = coinValue - 10;
 
-                cost10.setEnabled(false);
+                cost10.setVisibility(View.INVISIBLE);
                 updateCoinText(coinValue);
                 GameSystem.Instance.SetIntInSave("Coins", coinValue);
                 GameSystem.Instance.SetIntInSave("CatCart", 1);
