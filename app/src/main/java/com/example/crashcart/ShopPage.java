@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ShopPage extends Activity implements OnClickListener, StateBase {
@@ -29,6 +30,9 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
     private ImageButton btn_cat;
 
     private ImageButton btn_cart;
+
+    private ImageView  cost2;
+    private ImageView  cost10;
 
 
     int catcheck;
@@ -63,6 +67,8 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
         //when android studio tells you to import R, DO NOT do it
         //whenm u see this message, it will mean xml has an error.
 
+        cost2 = (ImageView) findViewById(R.id.cost2);
+        cost10 = (ImageView) findViewById(R.id.cost10);
 
         btn_back = (ImageButton) findViewById(R.id.btn_back);
         btn_back.setOnClickListener(this);
@@ -155,6 +161,7 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
             {
                 coinValue = coinValue - 2;
 
+                cost2.setEnabled(false);
                 updateCoinText(coinValue);
                 GameSystem.Instance.SetIntInSave("Coins", coinValue);
                 GameSystem.Instance.SetIntInSave("BlueCart", 1);
@@ -171,6 +178,7 @@ public class ShopPage extends Activity implements OnClickListener, StateBase {
             {
                 coinValue = coinValue - 10;
 
+                cost10.setEnabled(false);
                 updateCoinText(coinValue);
                 GameSystem.Instance.SetIntInSave("Coins", coinValue);
                 GameSystem.Instance.SetIntInSave("CatCart", 1);
