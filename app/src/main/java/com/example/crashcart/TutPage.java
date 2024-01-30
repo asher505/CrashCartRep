@@ -12,21 +12,19 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-public class LeadPage extends Activity implements OnClickListener, StateBase {
+public class TutPage extends Activity implements OnClickListener, StateBase {
 
     private ImageButton btn_back;
 
-    private TextView scoreText;
 
     @Override
     protected void onCreate(Bundle SaveInstanceState){
         super.onCreate(SaveInstanceState);
-        setContentView(R.layout.leadpage);
+        setContentView(R.layout.tutpage);
         //NEVER import R *
         //when android studio tells you to import R, DO NOT do it
         //whenm u see this message, it will mean xml has an error.
 
-        scoreText = (TextView) findViewById(R.id.scoreText);
         btn_back = (ImageButton) findViewById(R.id.btn_back);
         btn_back.setOnClickListener(this);
         // this allows the correct button to be assigned to the object name and
@@ -36,10 +34,8 @@ public class LeadPage extends Activity implements OnClickListener, StateBase {
         // it knows what to do
 
 
-        StateManager.Instance.AddState(new LeadPage());
+        StateManager.Instance.AddState(new TutPage());
 
-        //scoreText.setText("Score: " + Integer.toString(GameSystem.Instance.getPlayerScore("asher")));
-        scoreText.setText(GameSystem.Instance.getLeaderboard());
     }
 
     @Override
@@ -85,7 +81,7 @@ public class LeadPage extends Activity implements OnClickListener, StateBase {
 
     @Override
     public String GetName(){ // State name for the Main menu
-        return "LeadPage";
+        return "TutPage";
     }
 
     @Override

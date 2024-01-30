@@ -60,6 +60,7 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
     private ImageButton btn_shop; //int a
     private ImageButton btn_lead; //int a
     private ImageButton btn_settings; //int a
+    private ImageButton btn_tut; //int a
 
     //public static Mainmenu Instance = null;
 
@@ -239,6 +240,10 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
         btn_settings = (ImageButton) findViewById(R.id.btn_settings);
         btn_settings.setOnClickListener(this);
 
+        btn_tut = (ImageButton) findViewById(R.id.btn_tut);
+        btn_tut.setOnClickListener(this);
+
+
         // this allows the correct button to be assigned to the object name and
         // for this case button
         // setonclicklistener to the specified button so that we know
@@ -305,6 +310,13 @@ public class Mainmenu extends Activity implements OnClickListener, StateBase {
             //change GamePage.class to ShopPage
             intent.setClass(this,SettingsPage.class);
             StateManager.Instance.ChangeState("SettingsPage"); // Press shop button
+
+        }
+        if (v == btn_tut){
+
+            //change GamePage.class to ShopPage
+            intent.setClass(this,TutPage.class);
+            StateManager.Instance.ChangeState("TutPage"); // Press shop button
 
         }
 
